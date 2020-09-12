@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Inputs from "./inputs.js";
 
 class Asset extends Component {
   constructor() {
@@ -13,12 +14,16 @@ class Asset extends Component {
     if (localStorage.getItem("reallocate")) {
       this.state.reallocate = localStorage.getItem("reallocate");
     } else {
-      this.state.reallocate = true;
-      localStorage.setItem("reallocate", true);
+      this.state.reallocate = "true";
+      localStorage.setItem("reallocate", "true");
     }
   }
 
-  addAsset = async () => {
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  addAsset = () => {
     localStorage.setItem(
       "counter",
       parseInt(localStorage.getItem("counter")) + 1
@@ -36,30 +41,6 @@ class Asset extends Component {
     }
   };
 
-  toggleReallocation = () => {
-    if (this.state.reallocate) {
-      var inputs = document.getElementsByClassName("toggle");
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].style.display = "none";
-        inputs[i].required = false;
-      }
-    } else {
-      var inputs = document.getElementsByClassName("toggle");
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].style.display = "inline";
-        inputs[i].required = true;
-      }
-    }
-  };
-
-  array = (n) => {
-    var arr = [];
-    for (var i = 1; i <= n; i++) {
-      arr.push(i);
-    }
-    return arr;
-  };
-
   render() {
     return (
       <>
@@ -68,12 +49,14 @@ class Asset extends Component {
           <button onClick={this.removeAsset}>Remove Last Asset</button>
           <button
             onClick={() => {
-              this.setState({ reallocate: !this.state.reallocate });
-              localStorage.setItem("reallocate", !this.state.reallocate);
-              this.toggleReallocation();
+              localStorage.setItem(
+                "reallocate",
+                localStorage.getItem("reallocate") === "true" ? "false" : "true"
+              );
+              this.setState({ reallocate: localStorage.getItem("reallocate") });
             }}
           >
-            {this.state.reallocate
+            {this.state.reallocate === "true"
               ? "Check Current Allocation"
               : "Reallocate Assets"}
           </button>
@@ -90,36 +73,16 @@ class Asset extends Component {
               console.log("submitted");
             }}
           >
-            {this.array(this.state.counter).map((count, index) => (
-              <div key={index} id={"asset" + count}>
-                {count}:<label htmlFor={"ticker" + count}>Ticker</label>
-                <input id={"ticker" + count} type="text" required></input>
-                <label htmlFor={"shares" + count}>Shares</label>
-                <input id={"shares" + count} type="text" required></input>
-                <label className="toggle" htmlFor={"min" + count}>
-                  Min Target
-                </label>
-                <input
-                  className="toggle"
-                  id={"min" + count}
-                  type="text"
-                  required
-                ></input>
-                <label className="toggle" htmlFor={"max" + count} required>
-                  Max Target
-                </label>
-                <input
-                  className="toggle"
-                  id={"max" + count}
-                  type="text"
-                  required
-                ></input>
-              </div>
-            ))}
+            <Inputs
+              counter={this.state.counter}
+              reallocate={this.state.reallocate}
+            />
+
             <button type="submit">Calculate</button>
           </form>
           {this.state.counter}
         </div>
+        {console.log("render")}
       </>
     );
   }
