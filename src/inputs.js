@@ -47,20 +47,11 @@ class Inputs extends Component {
             <label htmlFor={"price" + count}>Price</label>
             <input id={"price" + count} type="text" required></input>
             <label className="toggle" htmlFor={"min" + count}>
-              Min Target
+              Target Percentage
             </label>
             <input
               className="toggle"
-              id={"min" + count}
-              type="number"
-              required
-            ></input>
-            <label className="toggle" htmlFor={"max" + count} required>
-              Max Target
-            </label>
-            <input
-              className="toggle"
-              id={"max" + count}
+              id={"target" + count}
               type="number"
               required
             ></input>
