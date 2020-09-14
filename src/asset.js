@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Inputs from "./inputs.js";
+import Calculations from "./calculations.js";
 
 class Asset extends Component {
   constructor() {
@@ -16,6 +17,13 @@ class Asset extends Component {
     } else {
       this.state.reallocate = "true";
       localStorage.setItem("reallocate", "true");
+    }
+    if (localStorage.getItem("calculations")) {
+      this.state.calculations = JSON.parse(
+        localStorage.getItem("calculations")
+      );
+    } else {
+      this.state.calculations = [];
     }
   }
 
@@ -39,6 +47,28 @@ class Asset extends Component {
       );
       this.setState({ counter: localStorage.getItem("counter") });
     }
+  };
+
+  calculate = () => {
+    var assets = document.getElementsByClassName("assetInputs");
+    var calcs = [];
+    for (var i = 0; i < assets.length; i++) {
+      var loops;
+      var arr = [];
+      var elem = assets[i].getElementsByTagName("input");
+      if (this.state.reallocate === "true") {
+        loops = 5;
+      } else {
+        loops = 3;
+      }
+      for (var j = 0; j < loops; j++) {
+        arr.push(elem[j].value);
+      }
+      calcs.push(arr);
+      console.log(arr);
+    }
+    this.setState({ calculations: calcs });
+    localStorage.setItem("calculations", JSON.stringify(calcs));
   };
 
   render() {
@@ -69,7 +99,9 @@ class Asset extends Component {
             Clear
           </button>
           <form
+            action="#"
             onSubmit={() => {
+              this.calculate();
               console.log("submitted");
             }}
           >
@@ -82,7 +114,10 @@ class Asset extends Component {
           </form>
           {this.state.counter}
         </div>
-        {console.log("render")}
+        <Calculations
+          data={this.state.calculations}
+          reallocate={this.state.reallocate}
+        />
       </>
     );
   }
