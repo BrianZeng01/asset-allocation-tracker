@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { PieChart } from "react-minimal-pie-chart";
 
 class Calculations extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    // current [ticker,value,shares,percentage]
+    // reallocated [ticker, value, shares, buysell, percentage]
+    this.state = { currentAssets: [], reallocatedAssets: [] };
   }
 
   async componentDidMount() {
@@ -39,6 +42,7 @@ class Calculations extends Component {
       );
     });
 
+    this.setState({ currentAssets: currentAssets });
     this.setState({ totalValue: totalValue });
     console.log(currentAssets);
   };
@@ -47,7 +51,7 @@ class Calculations extends Component {
     var inputs = this.props.data;
     var newTotalValue = 0;
     var cash = 0;
-    var recalculatedAssets = [];
+    var reallocatedAssets = [];
 
     inputs.forEach((arr) => {
       var ticker = arr[0];
@@ -58,27 +62,74 @@ class Calculations extends Component {
       var newValue = newShares * arr[2];
 
       newTotalValue += newValue;
-      recalculatedAssets.push([ticker, newShares, newValue, buySell]);
+      reallocatedAssets.push([ticker, newValue, newShares, buySell]);
     });
-    recalculatedAssets.forEach((arr) => {
+    reallocatedAssets.forEach((arr) => {
       arr.push(
         Math.round(
-          ((arr[2] / this.state.totalValue) * 100 + Number.EPSILON) * 100
+          ((arr[1] / this.state.totalValue) * 100 + Number.EPSILON) * 100
         ) / 100
       );
     });
 
     this.setState({ cash: this.state.totalValue - newTotalValue });
-    console.log(recalculatedAssets, cash);
+    this.setState({ reallocatedAssets: reallocatedAssets });
+    console.log(reallocatedAssets, cash);
+  };
+
+  pieChart = (arr) => {
+    return (
+      <PieChart
+        data={[
+          arr.forEach((arr) => {
+            '{title: "amd", value: 33, color: "blue" }';
+          }),
+          // var randomColor = Math.floor(Math.random()*16777215).toString(16);
+        ]}
+      />
+    );
+  };
+
+  table = (arr, type) => {
+    return (
+      <table>
+        <tr>
+          <th>Ticker</th>
+          <th>Value</th>
+          <th>Shares</th>
+          {type === "reallocated" ? <th>Buy/Sell</th> : null}
+          <th>Percentage</th>
+        </tr>
+        {arr.map((arr, index) => (
+          <tr key={index}>
+            <td>{arr[0]}</td>
+            <td>{arr[1]}</td>
+            <td>{arr[2]}</td>
+            <td>{arr[3]}</td>
+            {type === "reallocated" ? <td>{arr[4]}</td> : null}
+          </tr>
+        ))}
+      </table>
+    );
   };
   render() {
     return (
       <>
         <div className="calculations">
-          <div className="calculations">Calculations go here</div>
-          {this.props.data.map((arr, index) => (
-            <div key={index}>{arr}</div>
-          ))}
+          <div className="currentAssets">
+            <div className="table">
+              {this.table(this.state.currentAssets, "current")}
+            </div>
+
+            <div className="pieChart">
+              {this.pieChart(this.state.currentAssets)}
+            </div>
+          </div>
+          <div className="reallocatedAssets">
+            <div className="table">
+              {this.table(this.state.reallocatedAssets, "reallocated")}
+            </div>
+          </div>
         </div>
       </>
     );
