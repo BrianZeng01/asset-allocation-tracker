@@ -1,4 +1,23 @@
 input {
   width: 75px;
 }
+
+.calculations .pieChart .chart {
+  width: 200px;
+  height: 200px;
+  font-size: small;
+}
+
+.calculations .pieChart div {
+  display: inline-block;
+}
+
+.calculations .pieChart .chartColors .color {
+  display: block;
+}
+
+.calculations .pieChart .chartColors .square {
+  width: 10px;
+  height: 10px;
+}
 /*# sourceMappingURL=style.css.map */

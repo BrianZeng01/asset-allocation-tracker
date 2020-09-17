@@ -1,3 +1,25 @@
 input {
   width: 75px;
 }
+
+.calculations {
+  .pieChart {
+    .chart {
+      width: 200px;
+      height: 200px;
+      font-size: small;
+    }
+    div {
+      display: inline-block;
+    }
+    .chartColors {
+      .color {
+        display: block;
+      }
+      .square {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}

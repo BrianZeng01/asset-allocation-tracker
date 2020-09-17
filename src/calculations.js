@@ -4,8 +4,8 @@ import { PieChart } from "react-minimal-pie-chart";
 class Calculations extends Component {
   constructor(props) {
     super(props);
-    // current [ticker,value,shares,percentage]
-    // reallocated [ticker, value, shares, buysell, percentage]
+    // current [ticker,value,shares,percentage, color]
+    // reallocated [ticker, value, shares, buysell, percentage, color]
     this.state = { currentAssets: [], reallocatedAssets: [] };
   }
 
@@ -40,6 +40,7 @@ class Calculations extends Component {
       arr.push(
         Math.round(((arr[2] / totalValue) * 100 + Number.EPSILON) * 100) / 100
       );
+      arr.push("none");
     });
 
     this.setState({ currentAssets: currentAssets });
@@ -64,12 +65,20 @@ class Calculations extends Component {
       newTotalValue += newValue;
       reallocatedAssets.push([ticker, newValue, newShares, buySell]);
     });
+    reallocatedAssets.push([
+      "CASH",
+      this.state.totalValue - newTotalValue,
+      0,
+      0,
+      0,
+    ]);
     reallocatedAssets.forEach((arr) => {
       arr.push(
         Math.round(
           ((arr[1] / this.state.totalValue) * 100 + Number.EPSILON) * 100
         ) / 100
       );
+      arr.push("none");
     });
 
     this.setState({ cash: this.state.totalValue - newTotalValue });
@@ -77,39 +86,72 @@ class Calculations extends Component {
     console.log(reallocatedAssets, cash);
   };
 
-  pieChart = (arr) => {
+  pieChart = (arr, type) => {
+    var randomColor = require("randomcolor");
+    var dataArray = [];
+    var colorArray = randomColor({
+      count: arr.length,
+      luminosity: "light",
+      hue: "blue",
+    });
+    arr.forEach((arr, index) => {
+      arr[-1] = colorArray[index];
+      dataArray.push({
+        title: arr[0],
+        value: type === "current" ? arr[3] : arr[4],
+        color: colorArray[index],
+      });
+    });
     return (
-      <PieChart
-        data={[
-          arr.forEach((arr) => {
-            '{title: "amd", value: 33, color: "blue" }';
-          }),
-          // var randomColor = Math.floor(Math.random()*16777215).toString(16);
-        ]}
-      />
+      <div className="pieChart">
+        <div className="chart">
+          <PieChart
+            className="piechart"
+            data={dataArray}
+            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+            animate
+          />
+        </div>
+
+        <div className="chartColors">
+          {arr.map((arr) => (
+            <div className="color">
+              <div
+                className="square"
+                style={{
+                  backgroundColor: arr[-1],
+                }}
+              ></div>
+              {arr[0]}
+            </div>
+          ))}
+        </div>
+      </div>
     );
   };
 
   table = (arr, type) => {
     return (
-      <table>
-        <tr>
-          <th>Ticker</th>
-          <th>Value</th>
-          <th>Shares</th>
-          {type === "reallocated" ? <th>Buy/Sell</th> : null}
-          <th>Percentage</th>
-        </tr>
-        {arr.map((arr, index) => (
-          <tr key={index}>
-            <td>{arr[0]}</td>
-            <td>{arr[1]}</td>
-            <td>{arr[2]}</td>
-            <td>{arr[3]}</td>
-            {type === "reallocated" ? <td>{arr[4]}</td> : null}
+      <div className="table">
+        <table>
+          <tr>
+            <th>Ticker</th>
+            <th>Value</th>
+            <th>Shares</th>
+            {type === "reallocated" ? <th>Buy/Sell</th> : null}
+            <th>Percentage</th>
           </tr>
-        ))}
-      </table>
+          {arr.map((arr, index) => (
+            <tr key={index}>
+              <td>{arr[0]}</td>
+              <td>{arr[1]}</td>
+              <td>{arr[2]}</td>
+              <td>{arr[3]}</td>
+              {type === "reallocated" ? <td>{arr[4]}</td> : null}
+            </tr>
+          ))}
+        </table>
+      </div>
     );
   };
   render() {
@@ -117,18 +159,12 @@ class Calculations extends Component {
       <>
         <div className="calculations">
           <div className="currentAssets">
-            <div className="table">
-              {this.table(this.state.currentAssets, "current")}
-            </div>
-
-            <div className="pieChart">
-              {this.pieChart(this.state.currentAssets)}
-            </div>
+            {this.table(this.state.currentAssets, "current")}
+            {this.pieChart(this.state.currentAssets, "current")}
           </div>
           <div className="reallocatedAssets">
-            <div className="table">
-              {this.table(this.state.reallocatedAssets, "reallocated")}
-            </div>
+            {this.table(this.state.reallocatedAssets, "reallocated")}
+            {this.pieChart(this.state.reallocatedAssets, "reallocated")}
           </div>
         </div>
       </>
