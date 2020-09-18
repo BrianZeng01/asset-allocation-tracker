@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class Inputs extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   array = (n) => {
     var arr = [];
     for (var i = 1; i <= n; i++) {

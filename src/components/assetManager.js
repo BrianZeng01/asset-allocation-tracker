@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Inputs from "./inputs.js";
 import Calculations from "./calculations.js";
 
-class Asset extends Component {
+class AssetManager extends Component {
   constructor() {
     super();
     this.state = {};
@@ -152,4 +152,4 @@ class Asset extends Component {
   }
 }
 
-export default Asset;
+export default AssetManager;

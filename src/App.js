@@ -1,11 +1,11 @@
 import React from "react";
-import Asset from "./asset.js";
+import AssetManager from "./components/assetManager.js";
 import "./style.css";
 
 function App() {
   return (
     <>
-      <Asset />
+      <AssetManager />
     </>
   );
 }
