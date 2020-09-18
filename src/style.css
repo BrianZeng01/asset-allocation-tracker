@@ -1,15 +1,78 @@
-input {
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[12];
+      grid-template-columns: repeat(12, 1fr);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.assets {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.assets h1 {
+  text-align: center;
+}
+
+.assets .buttons button {
+  margin: 1em;
+}
+
+.assets .inputs .input {
+  margin: 0.5em;
+}
+
+.assets .inputs input {
   width: 75px;
+  margin-left: 0.25em;
+  margin-right: 0.75em;
+}
+
+.assets .calculate {
+  margin: 1em;
+  font-size: 2em;
+  border-radius: 0.6em;
+}
+
+.calculations {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.calculations h1 {
+  text-align: center;
 }
 
 .calculations .pieChart .chart {
-  width: 200px;
-  height: 200px;
-  font-size: small;
+  width: 250px;
+  height: 250px;
+  font-size: 0.75em;
 }
 
 .calculations .pieChart div {
   display: inline-block;
+}
+
+.calculations .pieChart .chartColors {
+  vertical-align: top;
+  margin-left: 1em;
 }
 
 .calculations .pieChart .chartColors .color {

@@ -1,18 +1,61 @@
-input {
-  width: 75px;
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  justify-content: center;
 }
 
+.assets {
+  display: grid;
+  grid-column: 1/13;
+  justify-content: center;
+  text-align: center;
+  h1 {
+    text-align: center;
+  }
+
+  .buttons {
+    button {
+      margin: 1em;
+    }
+  }
+
+  .inputs {
+    .input {
+      margin: 0.5em;
+    }
+    input {
+      width: 75px;
+      margin-left: 0.25em;
+      margin-right: 0.75em;
+    }
+  }
+
+  .calculate {
+    margin: 1em;
+    font-size: 2em;
+    border-radius: 0.6em;
+  }
+}
 .calculations {
+  display: grid;
+  grid-column: 1/13;
+  justify-content: center;
+  h1 {
+    text-align: center;
+  }
   .pieChart {
     .chart {
-      width: 200px;
-      height: 200px;
-      font-size: small;
+      width: 250px;
+      height: 250px;
+      font-size: 0.75em;
     }
     div {
       display: inline-block;
     }
     .chartColors {
+      vertical-align: top;
+      margin-left: 1em;
       .color {
         display: block;
       }

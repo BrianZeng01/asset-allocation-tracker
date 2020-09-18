@@ -5,12 +5,7 @@ import "./style.css";
 function App() {
   return (
     <>
-      <div className="header">
-        <h1>Asset Reallocator</h1>
-      </div>
-      <div>
-        <Asset />
-      </div>
+      <Asset />
     </>
   );
 }

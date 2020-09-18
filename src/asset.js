@@ -97,29 +97,36 @@ class Asset extends Component {
     return (
       <>
         <div className="assets">
-          <button onClick={this.addAsset}>Add Asset</button>
-          <button onClick={this.removeAsset}>Remove Last Asset</button>
-          <button
-            onClick={() => {
-              localStorage.setItem(
-                "reallocate",
-                localStorage.getItem("reallocate") === "true" ? "false" : "true"
-              );
-              this.setState({ reallocate: localStorage.getItem("reallocate") });
-            }}
-          >
-            {this.state.reallocate === "true"
-              ? "Check Current Allocation"
-              : "Reallocate Assets"}
-          </button>
-          <button
-            onClick={() => {
-              localStorage.clear();
-              window.location.reload();
-            }}
-          >
-            Clear
-          </button>
+          <h1>Asset Reallocator</h1>
+          <div className="buttons">
+            <button onClick={this.addAsset}>Add Asset</button>
+            <button onClick={this.removeAsset}>Remove Last Asset</button>
+            <button
+              onClick={() => {
+                localStorage.setItem(
+                  "reallocate",
+                  localStorage.getItem("reallocate") === "true"
+                    ? "false"
+                    : "true"
+                );
+                this.setState({
+                  reallocate: localStorage.getItem("reallocate"),
+                });
+              }}
+            >
+              {this.state.reallocate === "true"
+                ? "Current Allocation Only"
+                : "Reallocate Assets"}
+            </button>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location.reload();
+              }}
+            >
+              Clear
+            </button>
+          </div>
           <form
             action="#"
             onSubmit={() => {
@@ -130,11 +137,11 @@ class Asset extends Component {
               counter={this.state.counter}
               reallocate={this.state.reallocate}
             />
-
-            <button type="submit">Calculate</button>
+            <button type="submit" className="calculate">
+              Calculate
+            </button>
             <div id="error"></div>
           </form>
-          {this.state.counter}
         </div>
         <Calculations
           data={this.state.calculations}
