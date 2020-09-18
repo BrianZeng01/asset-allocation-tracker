@@ -33,6 +33,7 @@
 
   .calculate {
     margin: 1em;
+    outline: none;
     font-size: 2em;
     border-radius: 0.6em;
   }
@@ -43,11 +44,13 @@
   justify-content: center;
   h1 {
     text-align: center;
+    color: white;
+    background: #213458;
   }
   .pieChart {
     .chart {
-      width: 250px;
-      height: 250px;
+      width: 35em;
+      height: 35em;
       font-size: 0.75em;
     }
     div {
@@ -64,5 +67,7 @@
         height: 10px;
       }
     }
+  }
+  .barChart {
   }
 }

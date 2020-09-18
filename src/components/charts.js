@@ -4,13 +4,24 @@ import { Bar } from "react-chartjs-2";
 import React, { Component } from "react";
 
 class Charts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { display: "percentage" };
+  }
+
+  changeDisplay = () => {
+    this.state.display === "percentage"
+      ? this.setState({ display: "value" })
+      : this.setState({ display: "percentage" });
+    console.log(this.state.display);
+  };
   // https://www.npmjs.com/package/react-minimal-pie-chart
-  pieChart = (arr, type) => {
+  pieChart = (arr) => {
     var dataArray = [];
     var colorArray = randomColor({
       count: arr.length,
       luminosity: "light",
-      hue: "blue",
+      hue: "#213458",
     });
     arr.forEach((arr, index) => {
       arr.splice(-1, 1, colorArray[index]);
@@ -53,31 +64,41 @@ class Charts extends Component {
   };
 
   // https://www.educative.io/edpresso/how-to-use-chartjs-to-create-charts-in-react
-  barChart = (arr, type) => {
+  barChart = (arr, display) => {
     var tickers = [];
-    var percentages = [];
+    var values = [];
     arr.forEach((arr) => {
       tickers.push(arr[0]);
-      percentages.push(arr[arr.length - 2]);
+      values.push(arr[display === "percentage" ? arr.length - 2 : 1]);
     });
+    values.push(0);
     var state = {
       labels: tickers,
       datasets: [
         {
-          label: "Percentage",
-          backgroundColor: "lightgray",
-          borderColor: "red",
-          borderWidth: 2,
-          data: percentages,
+          label: display === "percentage" ? "Percentage" : "Value",
+          backgroundColor: "#1F77AC",
+          borderColor: "#213458",
+          borderWidth: 3,
+          data: values,
         },
       ],
     };
     return (
       <div className="barChart">
         <Bar
+          className="bar"
+          height={350}
           data={state}
           options={{
-            title: { display: true, text: "Percentage of Portfolio" },
+            title: {
+              display: true,
+              text:
+                display === "percentage"
+                  ? "Percentage of Portfolio"
+                  : "Asset Values",
+            },
+            maintainAspectRatio: false,
             legend: {
               display: false,
             },
@@ -119,9 +140,14 @@ class Charts extends Component {
   render() {
     return (
       <>
-        {this.table(this.props.dataArray, "current")}
-        {this.pieChart(this.props.dataArray, "current")}
-        {this.barChart(this.props.dataArray, "current")}
+        {this.table(this.props.dataArray, this.props.type)}
+        {this.pieChart(this.props.dataArray)}
+        {this.barChart(this.props.dataArray, this.state.display)}
+        <button onClick={this.changeDisplay}>
+          {this.state.display === "percentage"
+            ? "View Value"
+            : "View Percentages"}
+        </button>
       </>
     );
   }

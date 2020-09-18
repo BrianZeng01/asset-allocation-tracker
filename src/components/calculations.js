@@ -33,12 +33,12 @@ class Calculations extends Component {
 
     inputs.forEach((arr) => {
       var value = arr[1] * arr[2];
-      currentAssets.push([arr[0], arr[1], value]);
+      currentAssets.push([arr[0], value, arr[1]]);
       totalValue += arr[1] * arr[2];
     });
     currentAssets.forEach((arr) => {
       arr.push(
-        Math.round(((arr[2] / totalValue) * 100 + Number.EPSILON) * 100) / 100
+        Math.round(((arr[1] / totalValue) * 100 + Number.EPSILON) * 100) / 100
       );
       arr.push("none");
     });
@@ -88,11 +88,14 @@ class Calculations extends Component {
         <div className="calculations">
           <div className="currentAssets">
             <h1>Current Allocation</h1>
-            <Charts dataArray={this.state.currentAssets} />
+            <Charts dataArray={this.state.currentAssets} type="current" />
           </div>
           <div className="reallocatedAssets">
             <h1>New Allocation</h1>
-            <Charts dataArray={this.state.reallocatedAssets} />
+            <Charts
+              dataArray={this.state.reallocatedAssets}
+              type="reallocated"
+            />
           </div>
         </div>
       </>
