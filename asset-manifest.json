@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/asset-allocation-tracker/static/css/main.a7cc5c2f.chunk.css",
+    "main.js": "/asset-allocation-tracker/static/js/main.dbb90aa3.chunk.js",
+    "main.js.map": "/asset-allocation-tracker/static/js/main.dbb90aa3.chunk.js.map",
+    "runtime-main.js": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js",
+    "runtime-main.js.map": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js.map",
+    "static/js/2.0bbe8996.chunk.js": "/asset-allocation-tracker/static/js/2.0bbe8996.chunk.js",
+    "static/js/2.0bbe8996.chunk.js.map": "/asset-allocation-tracker/static/js/2.0bbe8996.chunk.js.map",
+    "index.html": "/asset-allocation-tracker/index.html",
+    "precache-manifest.da0f25e769df442663927365cde96d09.js": "/asset-allocation-tracker/precache-manifest.da0f25e769df442663927365cde96d09.js",
+    "service-worker.js": "/asset-allocation-tracker/service-worker.js",
+    "static/css/main.a7cc5c2f.chunk.css.map": "/asset-allocation-tracker/static/css/main.a7cc5c2f.chunk.css.map",
+    "static/js/2.0bbe8996.chunk.js.LICENSE.txt": "/asset-allocation-tracker/static/js/2.0bbe8996.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e58e0f0b.js",
+    "static/js/2.0bbe8996.chunk.js",
+    "static/css/main.a7cc5c2f.chunk.css",
+    "static/js/main.dbb90aa3.chunk.js"
+  ]
+}
