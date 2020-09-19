@@ -21,7 +21,7 @@ class Calculations extends Component {
       }
     }
 
-    this.recalculate(this.props);
+    this.recalculate();
   }
 
   componentDidUpdate(prevProps) {
@@ -29,17 +29,19 @@ class Calculations extends Component {
       this.recalculate();
       console.log("recalculated in didupdate");
       if (prevProps.reallocate !== this.props.reallocate) {
-        var elem = document.getElementById("reallocatedAssets");
-        this.props.reallocate === "true"
-          ? (elem.style.display = "grid")
-          : (elem.style.display = "none");
       }
     }
   }
-  recalculate = async (props) => {
+  recalculate = async () => {
     await this.calculateCurrent();
+    var elem = document.getElementById("reallocatedAssets");
     if (this.props.reallocate === "true") {
       this.calculateNew();
+      if (this.props.data[0].length >= 4) {
+        elem.style.display = "grid";
+      }
+    } else {
+      elem.style.display = "none";
     }
   };
 
@@ -49,7 +51,7 @@ class Calculations extends Component {
     var currentAssets = [];
 
     inputs.forEach((arr) => {
-      var value = arr[1] * arr[2];
+      var value = +(arr[1] * arr[2]).toFixed(2);
       currentAssets.push([arr[0], value, arr[1]]);
       totalValue += arr[1] * arr[2];
     });
@@ -75,7 +77,7 @@ class Calculations extends Component {
         ((arr[3] / 100) * this.state.totalValue) / arr[2]
       );
       var buySell = newShares - arr[1];
-      var newValue = newShares * arr[2];
+      var newValue = +(newShares * arr[2]).toFixed(2);
 
       newTotalValue += newValue;
       reallocatedAssets.push([ticker, newValue, newShares, buySell]);

@@ -6,14 +6,19 @@ import React, { Component } from "react";
 class Charts extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "percentage" };
+    this.state = { display: "percentage", sortBy: "numerically" };
   }
 
   changeDisplay = () => {
     this.state.display === "percentage"
       ? this.setState({ display: "value" })
       : this.setState({ display: "percentage" });
-    console.log(this.state.display);
+  };
+
+  changeSort = () => {
+    this.state.sortBy === "numerically"
+      ? this.setState({ sortBy: "alphabetically" })
+      : this.setState({ sortBy: "numerically" });
   };
   // https://www.npmjs.com/package/react-minimal-pie-chart
   pieChart = (arr) => {
@@ -64,9 +69,15 @@ class Charts extends Component {
   };
 
   // https://www.educative.io/edpresso/how-to-use-chartjs-to-create-charts-in-react
-  barChart = (arr, display) => {
+  barChart = (arr, display, sortBy) => {
     var tickers = [];
     var values = [];
+    if (sortBy === "numerically") {
+      arr.sort((a, b) => b[1] - a[1]);
+    } else {
+      arr.sort();
+    }
+
     arr.forEach((arr) => {
       tickers.push(arr[0]);
       values.push(arr[display === "percentage" ? arr.length - 2 : 1]);
@@ -85,26 +96,24 @@ class Charts extends Component {
       ],
     };
     return (
-      <div className="barChart">
-        <Bar
-          className="bar"
-          height={350}
-          data={state}
-          options={{
-            title: {
-              display: true,
-              text:
-                display === "percentage"
-                  ? "Percentage of Portfolio"
-                  : "Asset Values",
-            },
-            maintainAspectRatio: false,
-            legend: {
-              display: false,
-            },
-          }}
-        />
-      </div>
+      <Bar
+        className="bar"
+        height={350}
+        data={state}
+        options={{
+          title: {
+            display: true,
+            text:
+              display === "percentage"
+                ? "Percentage of Portfolio"
+                : "Asset Values",
+          },
+          maintainAspectRatio: false,
+          legend: {
+            display: false,
+          },
+        }}
+      />
     );
   };
 
@@ -117,7 +126,7 @@ class Charts extends Component {
               <th>Ticker</th>
               <th>Value</th>
               <th>Shares</th>
-              {type === "reallocated" ? <th>Buy/Sell</th> : null}
+              {type === "reallocated" ? <th>Bought/Sold</th> : null}
               <th>Percentage</th>
             </tr>
           </thead>
@@ -142,12 +151,25 @@ class Charts extends Component {
       <>
         {this.table(this.props.dataArray, this.props.type)}
         {this.pieChart(this.props.dataArray)}
-        {this.barChart(this.props.dataArray, this.state.display)}
-        <button onClick={this.changeDisplay}>
-          {this.state.display === "percentage"
-            ? "View Value"
-            : "View Percentages"}
-        </button>
+        <div className="barChart">
+          {this.barChart(
+            this.props.dataArray,
+            this.state.display,
+            this.state.sortBy
+          )}
+        </div>
+        <div className="view">
+          <button onClick={this.changeDisplay}>
+            {this.state.display === "percentage"
+              ? "View Value"
+              : "View Percentages"}
+          </button>
+          <button onClick={this.changeSort}>
+            {this.state.sortBy === "Alphabetically"
+              ? "Sort Numerically"
+              : "Sort Alphabetically"}
+          </button>
+        </div>
       </>
     );
   }

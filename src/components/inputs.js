@@ -38,11 +38,26 @@ class Inputs extends Component {
           {this.array(this.props.counter).map((count, index) => (
             <div key={index} id={"asset" + count} className="input">
               {count}:<label htmlFor={"ticker" + count}>Ticker</label>
-              <input id={"ticker" + count} type="text" required></input>
+              <input
+                id={"ticker" + count}
+                type="text"
+                required
+                placeholder="APPL"
+              ></input>
               <label htmlFor={"shares" + count}>Shares</label>
-              <input id={"shares" + count} type="number" required></input>
+              <input
+                id={"shares" + count}
+                type="number"
+                required
+                placeholder="30"
+              ></input>
               <label htmlFor={"price" + count}>Price</label>
-              <input id={"price" + count} type="text" required></input>
+              <input
+                id={"price" + count}
+                type="text"
+                required
+                placeholder="150"
+              ></input>
               <label className="toggle" htmlFor={"min" + count}>
                 Target Percentage
               </label>
@@ -51,6 +66,7 @@ class Inputs extends Component {
                 id={"target" + count}
                 type="number"
                 required
+                placeholder="10"
               ></input>
             </div>
           ))}
