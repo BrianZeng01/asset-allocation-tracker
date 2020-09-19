@@ -26,7 +26,7 @@ class AssetManager extends Component {
     //   this.state.calculations = [];
     // }
     //  Test 1
-    // ---------------------------
+    // // ---------------------------
     this.state.counter = 3;
     this.state.reallocate = "true";
     this.state.calculations = [
@@ -39,6 +39,17 @@ class AssetManager extends Component {
     //                    [APPL, 4200,28shares,sell2,19.91%],
     //                    [VFV, 12600, 180shares, buy50, 59.7%],
     //                    [CASH, 100]
+    // Test 2
+    // this.state.counter = 6;
+    // this.state.reallocate = "true";
+    // this.state.calculations = [
+    //   ["APPL", 30, 150, 10],
+    //   ["AMD", 100, 75, 15],
+    //   ["VFV", 130, 70, 30],
+    //   ["GOOG", 10, 400, 10],
+    //   ["FB", 20, 250.53, 10],
+    //   ["BTC", 40, 250, 10],
+    // ];
   }
 
   sleep(ms) {
@@ -64,7 +75,7 @@ class AssetManager extends Component {
   };
 
   calculate = () => {
-    var assets = document.getElementsByClassName("assetInputs");
+    var assets = document.getElementsByClassName("input");
     var calcs = [];
     var targetPercentageTotal = 0;
     for (var i = 0; i < assets.length; i++) {
@@ -83,13 +94,20 @@ class AssetManager extends Component {
         return false;
       }
       for (var j = 0; j < loops; j++) {
-        arr.push(elem[j].value);
+        var item = elem[j].value;
+        if (typeof item === "number") {
+          arr.push(Math.round(((item * 100 + Number.EPSILON) * 100) / 100));
+        } else {
+          arr.push(item);
+        }
       }
       calcs.push(arr);
     }
+
     calcs.sort();
     this.setState({ calculations: calcs });
     localStorage.setItem("calculations", JSON.stringify(calcs));
+    console.log(calcs);
     console.log("submitted");
   };
 
@@ -97,7 +115,7 @@ class AssetManager extends Component {
     return (
       <>
         <div className="assets">
-          <h1>Asset Reallocator</h1>
+          <h1>Asset Allocation Tool</h1>
           <div className="buttons">
             <button onClick={this.addAsset}>Add Asset</button>
             <button onClick={this.removeAsset}>Remove Last Asset</button>
@@ -143,10 +161,12 @@ class AssetManager extends Component {
             <div id="error"></div>
           </form>
         </div>
-        <Calculations
-          data={this.state.calculations}
-          reallocate={this.state.reallocate}
-        />
+        {this.state.calculations.length >= 1 ? (
+          <Calculations
+            data={this.state.calculations}
+            reallocate={this.state.reallocate}
+          />
+        ) : null}
       </>
     );
   }
