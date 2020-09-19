@@ -9,7 +9,7 @@ class Calculations extends Component {
     this.state = { currentAssets: [], reallocatedAssets: [] };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     console.log("mounting");
     for (var i = 0; i < this.props.data.length; i++) {
       var inputs = this.props.data[i];
@@ -20,11 +20,28 @@ class Calculations extends Component {
         document.getElementById("target" + (i + 1)).value = inputs[3];
       }
     }
+
+    this.recalculate(this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.recalculate();
+      console.log("recalculated in didupdate");
+      if (prevProps.reallocate !== this.props.reallocate) {
+        var elem = document.getElementById("reallocatedAssets");
+        this.props.reallocate === "true"
+          ? (elem.style.display = "grid")
+          : (elem.style.display = "none");
+      }
+    }
+  }
+  recalculate = async (props) => {
     await this.calculateCurrent();
     if (this.props.reallocate === "true") {
       this.calculateNew();
     }
-  }
+  };
 
   calculateCurrent = () => {
     var inputs = this.props.data;
@@ -63,12 +80,11 @@ class Calculations extends Component {
       newTotalValue += newValue;
       reallocatedAssets.push([ticker, newValue, newShares, buySell]);
     });
-    reallocatedAssets.push([
-      "CASH",
-      this.state.totalValue - newTotalValue,
-      0,
-      0,
-    ]);
+    var cash =
+      Math.round(
+        (this.state.totalValue - newTotalValue) * 100 + Number.EPSILON
+      ) / 100;
+    reallocatedAssets.push(["CASH", cash, 0, 0]);
     reallocatedAssets.forEach((arr) => {
       arr.push(
         Math.round(
@@ -78,7 +94,6 @@ class Calculations extends Component {
       arr.push("none");
     });
 
-    this.setState({ cash: this.state.totalValue - newTotalValue });
     this.setState({ reallocatedAssets: reallocatedAssets });
   };
 
@@ -90,7 +105,7 @@ class Calculations extends Component {
             <h1>Current Allocation</h1>
             <Charts dataArray={this.state.currentAssets} type="current" />
           </div>
-          <div className="reallocatedAssets">
+          <div id="reallocatedAssets" className="reallocatedAssets">
             <h1>New Allocation</h1>
             <Charts
               dataArray={this.state.reallocatedAssets}
