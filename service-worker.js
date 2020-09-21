@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/asset-allocation-tracker/precache-manifest.da0f25e769df442663927365cde96d09.js"
+  "/asset-allocation-tracker/precache-manifest.986ffb519a3156875e563ee00d71eb5f.js"
 );
 
 self.addEventListener('message', (event) => {
