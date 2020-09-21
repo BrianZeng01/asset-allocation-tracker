@@ -64,6 +64,35 @@ body {
   border-radius: 0.6em;
 }
 
+.demoImages {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 10;
+  grid-column: 2/12;
+  text-align: center;
+}
+
+.demoImages div {
+  border-radius: 2em;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5dc6f0), to(rgba(100, 203, 243, 0)));
+  background-image: linear-gradient(#5dc6f0, rgba(100, 203, 243, 0));
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.demoImages div img {
+  width: 45%;
+  margin: 0.5em;
+  height: auto;
+}
+
+.demoImages h2 {
+  background-color: #213458;
+  color: white;
+  margin: auto;
+  margin-bottom: 2em;
+  width: 300px;
+}
+
 .currentAssets,
 .reallocatedAssets {
   display: -ms-grid;
@@ -120,20 +149,29 @@ body {
   margin-bottom: 1.5em;
   border-radius: 3em;
   padding: 2em;
-  background-color: #beceee;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#83a4e7), to(#e2ebfb));
+  background-image: linear-gradient(360deg, #83a4e7, #e2ebfb);
+  color: white;
+  text-align: center;
 }
 
 .calculations .table table {
+  text-align: left;
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
   font-size: 1.25em;
 }
 
+.calculations .table table tbody {
+  background-image: -webkit-gradient(linear, left top, right top, from(#3a3ad3), to(#8787cf));
+  background-image: linear-gradient(to right, #3a3ad3, #8787cf);
+}
+
 .calculations .table table tbody th {
+  padding-left: 0.4em;
   padding-right: 1em;
-  color: white;
-  background-color: #1f4790;
+  background-color: #6964b3;
 }
 
 .calculations .table table tbody td {
@@ -142,12 +180,8 @@ body {
   padding-right: 1.5em;
 }
 
-.calculations .table table tbody tr:nth-child(even) {
-  background-color: #d6e2def3;
-}
-
-.calculations .table table tbody tr:nth-child(odd) {
-  background-color: rgba(203, 213, 216, 0.774);
+.calculations .table table tbody tr:hover {
+  background-color: #6964b3;
 }
 
 .calculations .pieChart {
@@ -156,7 +190,8 @@ body {
   grid-column: 1/7;
   border-radius: 2em;
   margin-right: 1.5em;
-  background-color: #beeeca;
+  background-image: -webkit-gradient(linear, right top, left top, from(#ee7676), to(#f1e4e4));
+  background-image: linear-gradient(270deg, #ee7676, #f1e4e4);
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
@@ -209,7 +244,8 @@ body {
   grid-column: 7/13;
   border-radius: 2em;
   padding: 1em;
-  background-color: #edeebe;
+  background-image: -webkit-gradient(linear, left top, right top, from(#e9eb8d), to(#edeeda));
+  background-image: linear-gradient(90deg, #e9eb8d, #edeeda);
 }
 
 .calculations .view {
@@ -248,7 +284,7 @@ body {
     grid-column: 2/7;
   }
   .calculations .pieChart .pieChartContent .chart {
-    width: 37em;
+    width: 30em;
   }
   .calculations .barChart {
     -ms-grid-column: 7;
@@ -268,6 +304,9 @@ body {
     -ms-grid-column-span: 5;
     grid-column: 2/7;
   }
+  .calculations .pieChart .pieChartContent .chart {
+    width: 31em;
+  }
   .calculations .barChart {
     -ms-grid-column: 7;
     -ms-grid-column-span: 5;
@@ -276,6 +315,17 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  .demoImages {
+    margin: 1em;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+  }
+  .demoImages div img {
+    margin-left: 5em;
+    margin-right: 5em;
+    width: 75%;
+  }
   .calculations {
     font-size: 0.8em;
   }

@@ -1,30 +1,32 @@
 import React, { Component } from "react";
 import Inputs from "./inputs.js";
 import Calculations from "./calculations.js";
+import currentAllocationDemo from "../images/currentAllocationDemo.png";
+import newAllocationDemo from "../images/newAllocationDemo.png";
 
 class AssetManager extends Component {
   constructor() {
     super();
     this.state = {};
-    // if (localStorage.getItem("counter")) {
-    //   this.state.counter = parseInt(localStorage.getItem("counter"));
-    // } else {
-    //   this.state.counter = 1;
-    //   localStorage.setItem("counter", 1);
-    // }
-    // if (localStorage.getItem("reallocate")) {
-    //   this.state.reallocate = localStorage.getItem("reallocate");
-    // } else {
-    //   this.state.reallocate = "true";
-    //   localStorage.setItem("reallocate", "true");
-    // }
-    // if (localStorage.getItem("calculations")) {
-    //   this.state.calculations = JSON.parse(
-    //     localStorage.getItem("calculations")
-    //   );
-    // } else {
-    //   this.state.calculations = [];
-    // }
+    if (localStorage.getItem("counter")) {
+      this.state.counter = parseInt(localStorage.getItem("counter"));
+    } else {
+      this.state.counter = 1;
+      localStorage.setItem("counter", 1);
+    }
+    if (localStorage.getItem("reallocate")) {
+      this.state.reallocate = localStorage.getItem("reallocate");
+    } else {
+      this.state.reallocate = "true";
+      localStorage.setItem("reallocate", "true");
+    }
+    if (localStorage.getItem("calculations")) {
+      this.state.calculations = JSON.parse(
+        localStorage.getItem("calculations")
+      );
+    } else {
+      this.state.calculations = [];
+    }
     //  Test 1
     // // ---------------------------
     // this.state.counter = 3;
@@ -40,16 +42,19 @@ class AssetManager extends Component {
     //                    [VFV, 12600, 180shares, buy50, 59.7%],
     //                    [CASH, 100]
     // Test 2
-    this.state.counter = 6;
-    this.state.reallocate = "true";
-    this.state.calculations = [
-      ["APPL", 30, 150, 10],
-      ["AMD", 100, 75, 15],
-      ["VFV", 130, 70, 30],
-      ["GOOG", 10, 400, 10],
-      ["FB", 20, 250.53, 10],
-      ["BTC", 40, 250, 10],
-    ];
+    // this.state.counter = 9;
+    // this.state.reallocate = "true";
+    // this.state.calculations = [
+    //   ["APPL", 30, 150, 10],
+    //   ["AMD", 100, 75, 10],
+    //   ["VFV", 130, 70, 30],
+    //   ["GOOG", 10, 400, 5],
+    //   ["FB", 20, 250, 10],
+    //   ["BTC", 40, 250, 5],
+    //   ["VGRO", 130, 20, 15],
+    //   ["TD", 40, 80, 10],
+    //   ["BYND", 30, 200, 5],
+    // ];
   }
 
   sleep(ms) {
@@ -155,6 +160,10 @@ class AssetManager extends Component {
               counter={this.state.counter}
               reallocate={this.state.reallocate}
             />
+            <h4>
+              Note: Sum of Target Percentage under 100 will allocate remaining
+              percentage to cash
+            </h4>
             <button type="submit" className="calculate">
               Calculate
             </button>
@@ -166,7 +175,15 @@ class AssetManager extends Component {
             data={this.state.calculations}
             reallocate={this.state.reallocate}
           />
-        ) : null}
+        ) : (
+          <div className="demoImages">
+            <h2>Demo View</h2>
+            <div>
+              <img alt="demoImage" src={currentAllocationDemo}></img>
+              <img alt="demoImage" src={newAllocationDemo}></img>
+            </div>
+          </div>
+        )}
       </>
     );
   }

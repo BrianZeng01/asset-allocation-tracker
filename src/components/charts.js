@@ -20,20 +20,25 @@ class Charts extends Component {
       ? this.setState({ sortBy: "alphabetically" })
       : this.setState({ sortBy: "numerically" });
   };
+
+  selectColor = (colorNum, colors) => {
+    if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
+    return "hsl(" + ((120 + colorNum * (360 / colors)) % 360) + ",100%,70%)";
+  };
   // https://www.npmjs.com/package/react-minimal-pie-chart
   pieChart = (arr) => {
     var dataArray = [];
-    var colorArray = randomColor({
-      count: arr.length,
-      luminosity: "light",
-      hue: "#213458",
-    });
+    // var colorArray = randomColor({
+    //   count: arr.length,
+    //   luminosity: "light",
+    //   hue: "#213458",
+    // });
     arr.forEach((arr, index) => {
-      arr.splice(-1, 1, colorArray[index]);
+      arr.splice(-1, 1, this.selectColor(index, 20));
       dataArray.push({
         title: arr[0],
         value: arr[arr.length - 2],
-        color: colorArray[index],
+        color: this.selectColor(index, 20),
       });
     });
 
@@ -120,6 +125,10 @@ class Charts extends Component {
   };
 
   table = (arr, type) => {
+    var totalValue = 0;
+    arr.forEach((arr) => {
+      totalValue += arr[1];
+    });
     return (
       <div className="table">
         <table>
@@ -142,6 +151,7 @@ class Charts extends Component {
             ))}
           </tbody>
         </table>
+        <h3>Total Value = {totalValue}</h3>
       </div>
     );
   };
