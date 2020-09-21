@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 #root {
   font-family: Arial, Helvetica, sans-serif;
   display: -ms-grid;
@@ -7,6 +11,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow: hidden;
 }
 
 .assets {
@@ -23,13 +28,26 @@
 
 .assets h1 {
   text-align: center;
+  color: white;
+  background: #213458;
 }
 
-.assets .buttons button {
+.assets button {
+  font-size: 1.25em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  background-color: #213458;
+  color: white;
+  outline: none;
   margin: 1em;
 }
 
+.assets button:hover {
+  background-color: #325697;
+}
+
 .assets .inputs .input {
+  padding: 0.5em;
   margin: 0.5em;
 }
 
@@ -46,12 +64,44 @@
   border-radius: 0.6em;
 }
 
-.calculations {
+.currentAssets,
+.reallocatedAssets {
   display: -ms-grid;
   display: grid;
   -ms-grid-column: 1;
   -ms-grid-column-span: 12;
   grid-column: 1/13;
+  -ms-grid-columns: (1fr)[12];
+      grid-template-columns: repeat(12, 1fr);
+}
+
+.currentAssets h1,
+.reallocatedAssets h1 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+}
+
+.currentAssets .view,
+.reallocatedAssets .view {
+  -ms-grid-column: 11;
+  -ms-grid-column-span: 2;
+  grid-column: 11/13;
+}
+
+.currentAssets .view button,
+.reallocatedAssets .view button {
+  cursor: pointer;
+  width: 150px;
+  float: right;
+}
+
+.calculations {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 8;
+  grid-column: 3/11;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -63,27 +113,222 @@
   background: #213458;
 }
 
-.calculations .pieChart .chart {
-  width: 35em;
-  height: 35em;
-  font-size: 0.75em;
+.calculations .table {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 8;
+  grid-column: 3/11;
+  margin-bottom: 1.5em;
+  border-radius: 3em;
+  padding: 2em;
+  background-color: #beceee;
 }
 
-.calculations .pieChart div {
+.calculations .table table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  font-size: 1.25em;
+}
+
+.calculations .table table tbody th {
+  padding-right: 1em;
+  color: white;
+  background-color: #1f4790;
+}
+
+.calculations .table table tbody td {
+  padding: 0.4em;
+  border-style: hidden;
+  padding-right: 1.5em;
+}
+
+.calculations .table table tbody tr:nth-child(even) {
+  background-color: #d6e2def3;
+}
+
+.calculations .table table tbody tr:nth-child(odd) {
+  background-color: rgba(203, 213, 216, 0.774);
+}
+
+.calculations .pieChart {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1/7;
+  border-radius: 2em;
+  margin-right: 1.5em;
+  background-color: #beeeca;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.calculations .pieChart .pieChartContent {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+}
+
+.calculations .pieChart .pieChartContent .chart {
   display: inline-block;
+  width: 40em;
+  font-size: 0.5em;
 }
 
-.calculations .pieChart .chartColors {
+.calculations .pieChart .pieChartContent .chartColors {
+  margin-top: 1em;
+  margin-right: 0.5em;
+  display: inline-block;
   vertical-align: top;
   margin-left: 1em;
 }
 
-.calculations .pieChart .chartColors .color {
+.calculations .pieChart .pieChartContent .chartColors div {
+  display: inline-block;
+}
+
+.calculations .pieChart .pieChartContent .chartColors .color {
   display: block;
 }
 
-.calculations .pieChart .chartColors .square {
-  width: 10px;
-  height: 10px;
+.calculations .pieChart .pieChartContent .chartColors .square {
+  width: 12.5px;
+  height: 12.5px;
+  margin-right: 0.3em;
+}
+
+.calculations .barChart {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-column: 7;
+  -ms-grid-column-span: 6;
+  grid-column: 7/13;
+  border-radius: 2em;
+  padding: 1em;
+  background-color: #edeebe;
+}
+
+.calculations .view {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+  margin-top: 1em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.calculations .view button {
+  width: 200px;
+  font-size: 1.25em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  background-color: #213458;
+  color: white;
+  outline: none;
+  margin: 1em;
+}
+
+.calculations .view button:hover {
+  background-color: #325697;
+}
+
+@media screen and (max-width: 1500px) {
+  .calculations {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 10;
+    grid-column: 2/12;
+  }
+  .calculations .pieChart {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 5;
+    grid-column: 2/7;
+  }
+  .calculations .pieChart .pieChartContent .chart {
+    width: 37em;
+  }
+  .calculations .barChart {
+    -ms-grid-column: 7;
+    -ms-grid-column-span: 5;
+    grid-column: 7/12;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .calculations {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+  }
+  .calculations .pieChart {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 5;
+    grid-column: 2/7;
+  }
+  .calculations .barChart {
+    -ms-grid-column: 7;
+    -ms-grid-column-span: 5;
+    grid-column: 7/12;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .calculations {
+    font-size: 0.8em;
+  }
+  .calculations .pieChart {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 8;
+    grid-column: 3/11;
+    margin-right: 0;
+    margin-bottom: 1.5em;
+  }
+  .calculations .pieChart .pieChartContent .chart {
+    width: 50em;
+  }
+  .calculations .barChart {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 8;
+    grid-column: 3/11;
+  }
+}
+
+@media screen and (max-width: 672px) {
+  .assets {
+    font-size: 0.7em;
+  }
+  .assets .buttons button {
+    margin: 0.5em;
+  }
+  .assets .inputs input {
+    width: 40px;
+    margin: 0;
+  }
+  .calculations {
+    font-size: 0.7em;
+  }
+  .calculations .table {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+  }
+  .calculations .pieChart {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+    margin-right: 0;
+  }
+  .calculations .barChart {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+  }
+  .calculations .view button {
+    width: 175px;
+    margin: 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */

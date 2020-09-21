@@ -27,29 +27,29 @@ class AssetManager extends Component {
     // }
     //  Test 1
     // // ---------------------------
-    this.state.counter = 3;
-    this.state.reallocate = "true";
-    this.state.calculations = [
-      ["APPL", 30, 150, 20],
-      ["AMD", 100, 75, 20],
-      ["VFV", 130, 70, 60],
-    ];
+    // this.state.counter = 3;
+    // this.state.reallocate = "true";
+    // this.state.calculations = [
+    //   ["APPL", 30, 150, 20],
+    //   ["AMD", 100, 75, 20],
+    //   ["VFV", 130, 70, 60],
+    // ];
     // ----------------------------
     // Expected Outcome = [AMD, 4200, 56shares, sell44, 19.91% ],
     //                    [APPL, 4200,28shares,sell2,19.91%],
     //                    [VFV, 12600, 180shares, buy50, 59.7%],
     //                    [CASH, 100]
     // Test 2
-    // this.state.counter = 6;
-    // this.state.reallocate = "true";
-    // this.state.calculations = [
-    //   ["APPL", 30, 150, 10],
-    //   ["AMD", 100, 75, 15],
-    //   ["VFV", 130, 70, 30],
-    //   ["GOOG", 10, 400, 10],
-    //   ["FB", 20, 250.53, 10],
-    //   ["BTC", 40, 250, 10],
-    // ];
+    this.state.counter = 6;
+    this.state.reallocate = "true";
+    this.state.calculations = [
+      ["APPL", 30, 150, 10],
+      ["AMD", 100, 75, 15],
+      ["VFV", 130, 70, 30],
+      ["GOOG", 10, 400, 10],
+      ["FB", 20, 250.53, 10],
+      ["BTC", 40, 250, 10],
+    ];
   }
 
   sleep(ms) {
@@ -115,7 +115,7 @@ class AssetManager extends Component {
     return (
       <>
         <div className="assets">
-          <h1>Asset Allocation Tool</h1>
+          <h1>Portfolio Allocation Tool</h1>
           <div className="buttons">
             <button onClick={this.addAsset}>Add Asset</button>
             <button onClick={this.removeAsset}>Remove Last Asset</button>

@@ -37,7 +37,7 @@ class Inputs extends Component {
         <div className="inputs">
           {this.array(this.props.counter).map((count, index) => (
             <div key={index} id={"asset" + count} className="input">
-              {count}:<label htmlFor={"ticker" + count}>Ticker</label>
+              <label htmlFor={"ticker" + count}>Ticker</label>
               <input
                 id={"ticker" + count}
                 type="text"

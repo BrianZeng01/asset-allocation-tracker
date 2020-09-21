@@ -1,8 +1,13 @@
+body {
+  margin: 0;
+}
+
 #root {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   justify-content: center;
+  overflow: hidden;
 }
 
 .assets {
@@ -10,18 +15,29 @@
   grid-column: 1/13;
   justify-content: center;
   text-align: center;
+
   h1 {
     text-align: center;
+    color: white;
+    background: #213458;
   }
 
-  .buttons {
-    button {
-      margin: 1em;
-    }
+  button {
+    font-size: 1.25em;
+    cursor: pointer;
+    border-radius: 0.5em;
+    background-color: #213458;
+    color: white;
+    outline: none;
+    margin: 1em;
+  }
+  button:hover {
+    background-color: #325697;
   }
 
   .inputs {
     .input {
+      padding: 0.5em;
       margin: 0.5em;
     }
     input {
@@ -38,36 +54,208 @@
     border-radius: 0.6em;
   }
 }
-.calculations {
+
+.currentAssets,
+.reallocatedAssets {
   display: grid;
   grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
+
+  h1 {
+    grid-column: 1/13;
+  }
+  .view {
+    grid-column: 11/13;
+    button {
+      cursor: pointer;
+      width: 150px;
+      float: right;
+    }
+  }
+}
+.calculations {
+  display: grid;
+  grid-column: 3/11;
   justify-content: center;
   h1 {
     text-align: center;
     color: white;
     background: #213458;
   }
-  .pieChart {
-    .chart {
-      width: 35em;
-      height: 35em;
-      font-size: 0.75em;
-    }
-    div {
-      display: inline-block;
-    }
-    .chartColors {
-      vertical-align: top;
-      margin-left: 1em;
-      .color {
-        display: block;
+  .table {
+    grid-column: 3/11;
+    margin-bottom: 1.5em;
+    border-radius: 3em;
+    padding: 2em;
+    background-color: #beceee;
+    table {
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+      font-size: 1.25em;
+
+      tbody {
+        th {
+          padding-right: 1em;
+          color: white;
+          background-color: #1f4790;
+        }
+        td {
+          padding: 0.4em;
+          border-style: hidden;
+          padding-right: 1.5em;
+        }
+        tr:nth-child(even) {
+          background-color: #d6e2def3;
+        }
+        tr:nth-child(odd) {
+          background-color: rgba(203, 213, 216, 0.774);
+        }
       }
-      .square {
-        width: 10px;
-        height: 10px;
+    }
+  }
+  .pieChart {
+    grid-column: 1/7;
+    border-radius: 2em;
+    margin-right: 1.5em;
+    background-color: #beeeca;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    .pieChartContent {
+      grid-column: 1/13;
+      .chart {
+        display: inline-block;
+        width: 40em;
+        font-size: 0.5em;
+      }
+      .chartColors {
+        margin-top: 1em;
+        margin-right: 0.5em;
+        display: inline-block;
+        div {
+          display: inline-block;
+        }
+        vertical-align: top;
+        margin-left: 1em;
+        .color {
+          display: block;
+        }
+        .square {
+          width: 12.5px;
+          height: 12.5px;
+          margin-right: 0.3em;
+        }
       }
     }
   }
   .barChart {
+    display: grid;
+    grid-column: 7/13;
+    border-radius: 2em;
+    padding: 1em;
+    background-color: #edeebe;
+  }
+
+  .view {
+    grid-column: 1/13;
+    margin-top: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    button {
+      width: 200px;
+      font-size: 1.25em;
+      cursor: pointer;
+      border-radius: 0.5em;
+      background-color: #213458;
+      color: white;
+      outline: none;
+      margin: 1em;
+    }
+    button:hover {
+      background-color: #325697;
+    }
+  }
+}
+@media screen and (max-width: 1500px) {
+  .calculations {
+    grid-column: 2/12;
+    .pieChart {
+      grid-column: 2/7;
+      .pieChartContent {
+        .chart {
+          width: 37em;
+        }
+      }
+    }
+    .barChart {
+      grid-column: 7/12;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .calculations {
+    grid-column: 1/13;
+    .pieChart {
+      grid-column: 2/7;
+    }
+    .barChart {
+      grid-column: 7/12;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .calculations {
+    font-size: 0.8em;
+    .pieChart {
+      grid-column: 3/11;
+      margin-right: 0;
+      margin-bottom: 1.5em;
+      .pieChartContent {
+        .chart {
+          width: 50em;
+        }
+      }
+    }
+    .barChart {
+      grid-column: 3/11;
+    }
+  }
+}
+@media screen and (max-width: 672px) {
+  .assets {
+    font-size: 0.7em;
+    .buttons {
+      button {
+        margin: 0.5em;
+      }
+    }
+    .inputs {
+      input {
+        width: 40px;
+        margin: 0;
+      }
+    }
+  }
+  .calculations {
+    font-size: 0.7em;
+    .table {
+      grid-column: 1/13;
+    }
+    .pieChart {
+      grid-column: 1/13;
+      margin-right: 0;
+    }
+    .barChart {
+      grid-column: 1/13;
+    }
+    .view {
+      button {
+        width: 175px;
+        margin: 0;
+      }
+    }
   }
 }

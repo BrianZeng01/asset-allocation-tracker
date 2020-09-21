@@ -39,30 +39,32 @@ class Charts extends Component {
 
     return (
       <div className="pieChart">
-        <div className="chart">
-          <PieChart
-            className="piechart"
-            data={dataArray}
-            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)}%`}
-            animate
-            segmentsShift={0.75}
-            center={[55, 55]}
-            viewBoxSize={[110, 110]}
-          />
-        </div>
+        <div className="pieChartContent">
+          <div className="chart">
+            <PieChart
+              className="piechart"
+              data={dataArray}
+              label={({ dataEntry }) => `${Math.round(dataEntry.percentage)}%`}
+              animate
+              segmentsShift={0.75}
+              center={[55, 55]}
+              viewBoxSize={[110, 110]}
+            />
+          </div>
 
-        <div className="chartColors">
-          {arr.map((arr, index) => (
-            <div className="color" key={index}>
-              <div
-                className="square"
-                style={{
-                  backgroundColor: arr[arr.length - 1],
-                }}
-              ></div>
-              {arr[0]}
-            </div>
-          ))}
+          <div className="chartColors">
+            {arr.map((arr, index) => (
+              <div className="color" key={index}>
+                <div
+                  className="square"
+                  style={{
+                    backgroundColor: arr[arr.length - 1],
+                  }}
+                ></div>
+                {arr[0]}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -121,16 +123,14 @@ class Charts extends Component {
     return (
       <div className="table">
         <table>
-          <thead>
+          <tbody>
             <tr>
               <th>Ticker</th>
               <th>Value</th>
               <th>Shares</th>
-              {type === "reallocated" ? <th>Bought/Sold</th> : null}
+              {type === "reallocated" ? <th>Buy/Sell</th> : null}
               <th>Percentage</th>
             </tr>
-          </thead>
-          <tbody>
             {arr.map((arr, index) => (
               <tr key={index}>
                 <td>{arr[0]}</td>
@@ -165,7 +165,7 @@ class Charts extends Component {
               : "View Percentages"}
           </button>
           <button onClick={this.changeSort}>
-            {this.state.sortBy === "Alphabetically"
+            {this.state.sortBy === "alphabetically"
               ? "Sort Numerically"
               : "Sort Alphabetically"}
           </button>
