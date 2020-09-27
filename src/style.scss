@@ -24,6 +24,7 @@ body {
 
   button {
     font-size: 1.25em;
+    font-weight: 600;
     cursor: pointer;
     border-radius: 0.5em;
     background-color: #213458;
@@ -36,18 +37,57 @@ body {
   }
 
   .inputs {
-    .input {
-      padding: 0.5em;
-      margin: 0.5em;
-    }
-    input {
-      width: 75px;
-      margin-left: 0.25em;
-      margin-right: 0.75em;
+    table {
+      margin: auto;
+      outline: none;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+      tr:nth-child(odd) {
+        border-radius: 1em;
+        background-color: rgb(13, 158, 224);
+      }
+      tr:nth-child(even) {
+        background-color: rgb(41, 101, 212);
+      }
+      tr:nth-child(1) {
+        background-color: initial;
+      }
+      th {
+        padding-bottom: 1em;
+        font-size: 1.5em;
+      }
+      td {
+        padding: 1em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+        input {
+          width: 125px;
+          font-weight: bold;
+          font-size: 1em;
+          background-color: rgba(245, 234, 234, 0.959);
+          border-radius: 0.75em;
+          padding-left: 0.5em;
+          border: none;
+        }
+      }
+
+      td:first-child {
+        border-left-style: solid;
+        border-width: 0;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      td:last-child {
+        border-right-style: solid;
+        border-width: 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
     }
   }
 
   .calculate {
+    font-weight: 650;
     margin: 1em;
     outline: none;
     font-size: 2em;
@@ -248,6 +288,21 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  .assets {
+    .inputs {
+      table {
+        th {
+          font-size: 1.25em;
+        }
+        td {
+          padding: 0.5em;
+          input {
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
   .demoImages {
     margin: 1em;
     grid-column: 1/13;
@@ -285,12 +340,26 @@ body {
       }
     }
     .inputs {
-      input {
-        width: 40px;
-        margin: 0;
+      table {
+        td {
+          input {
+            width: 55px;
+          }
+        }
       }
     }
   }
+  .demoImages {
+    margin: 1em;
+    grid-column: 1/13;
+    div {
+      img {
+        margin: 0;
+        width: 80%;
+      }
+    }
+  }
+
   .calculations {
     font-size: 0.7em;
     .table {

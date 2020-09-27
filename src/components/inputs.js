@@ -35,41 +35,55 @@ class Inputs extends Component {
     return (
       <>
         <div className="inputs">
-          {this.array(this.props.counter).map((count, index) => (
-            <div key={index} id={"asset" + count} className="input">
-              <label htmlFor={"ticker" + count}>Ticker</label>
-              <input
-                id={"ticker" + count}
-                type="text"
-                required
-                placeholder="APPL"
-              ></input>
-              <label htmlFor={"shares" + count}>Shares</label>
-              <input
-                id={"shares" + count}
-                type="number"
-                required
-                placeholder="30"
-              ></input>
-              <label htmlFor={"price" + count}>Price</label>
-              <input
-                id={"price" + count}
-                type="text"
-                required
-                placeholder="150"
-              ></input>
-              <label className="toggle" htmlFor={"min" + count}>
-                Target Percentage
-              </label>
-              <input
-                className="toggle"
-                id={"target" + count}
-                type="number"
-                required
-                placeholder="10"
-              ></input>
-            </div>
-          ))}
+          <table>
+            <tbody>
+              <tr>
+                <th>Ticker</th>
+                <th>Shares</th>
+                <th>Price</th>
+                {this.props.reallocate === "true" ? (
+                  <th>Target Percentage</th>
+                ) : null}
+              </tr>
+              {this.array(this.props.counter).map((count, index) => (
+                <tr className="input" key={index}>
+                  <td>
+                    <input
+                      id={"ticker" + count}
+                      type="text"
+                      required
+                      placeholder="APPL"
+                    ></input>
+                  </td>
+                  <td>
+                    <input
+                      id={"shares" + count}
+                      type="number"
+                      required
+                      placeholder="30"
+                    ></input>
+                  </td>
+                  <td>
+                    <input
+                      id={"price" + count}
+                      type="text"
+                      required
+                      placeholder="150"
+                    ></input>
+                  </td>
+                  <td>
+                    <input
+                      className="toggle"
+                      id={"target" + count}
+                      type="number"
+                      required
+                      placeholder="10"
+                    ></input>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </>
     );

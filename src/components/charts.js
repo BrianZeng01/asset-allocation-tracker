@@ -1,5 +1,4 @@
 import { PieChart } from "react-minimal-pie-chart";
-import randomColor from "randomcolor";
 import { Bar } from "react-chartjs-2";
 import React, { Component } from "react";
 
@@ -124,8 +123,13 @@ class Charts extends Component {
     );
   };
 
-  table = (arr, type) => {
+  table = (arr, type, sortBy) => {
     var totalValue = 0;
+    if (sortBy === "numerically") {
+      arr.sort((a, b) => b[1] - a[1]);
+    } else {
+      arr.sort();
+    }
     arr.forEach((arr) => {
       totalValue += arr[1];
     });
@@ -159,7 +163,7 @@ class Charts extends Component {
   render() {
     return (
       <>
-        {this.table(this.props.dataArray, this.props.type)}
+        {this.table(this.props.dataArray, this.props.type, this.state.sortBy)}
         {this.pieChart(this.props.dataArray)}
         <div className="barChart">
           {this.barChart(

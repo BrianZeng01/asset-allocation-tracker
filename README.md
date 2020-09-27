@@ -1,7 +1,8 @@
 ## TODO
+
 1.)Scrape quotes instead of having to manually put in prices
-2.)Refactor Input boxes to be a table of inputs under headers(ticker,price,etc...) to remove excessive labels
-3.)Polish up the design
+<Br>
+2.)Polish up the design
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -79,7 +79,7 @@ class AssetManager extends Component {
     }
   };
 
-  calculate = () => {
+  collectInputs = () => {
     var assets = document.getElementsByClassName("input");
     var calcs = [];
     var targetPercentageTotal = 0;
@@ -153,7 +153,7 @@ class AssetManager extends Component {
           <form
             action="#"
             onSubmit={() => {
-              this.calculate();
+              this.collectInputs();
             }}
           >
             <Inputs

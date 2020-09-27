@@ -34,6 +34,7 @@ body {
 
 .assets button {
   font-size: 1.25em;
+  font-weight: 600;
   cursor: pointer;
   border-radius: 0.5em;
   background-color: #213458;
@@ -46,18 +47,63 @@ body {
   background-color: #325697;
 }
 
-.assets .inputs .input {
-  padding: 0.5em;
-  margin: 0.5em;
+.assets .inputs table {
+  margin: auto;
+  outline: none;
+  border-collapse: separate;
+  border-spacing: 0 8px;
 }
 
-.assets .inputs input {
-  width: 75px;
-  margin-left: 0.25em;
-  margin-right: 0.75em;
+.assets .inputs table tr:nth-child(odd) {
+  border-radius: 1em;
+  background-color: #0d9ee0;
+}
+
+.assets .inputs table tr:nth-child(even) {
+  background-color: #2965d4;
+}
+
+.assets .inputs table tr:nth-child(1) {
+  background-color: initial;
+}
+
+.assets .inputs table th {
+  padding-bottom: 1em;
+  font-size: 1.5em;
+}
+
+.assets .inputs table td {
+  padding: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.assets .inputs table td input {
+  width: 125px;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: rgba(245, 234, 234, 0.959);
+  border-radius: 0.75em;
+  padding-left: 0.5em;
+  border: none;
+}
+
+.assets .inputs table td:first-child {
+  border-left-style: solid;
+  border-width: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.assets .inputs table td:last-child {
+  border-right-style: solid;
+  border-width: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .assets .calculate {
+  font-weight: 650;
   margin: 1em;
   outline: none;
   font-size: 2em;
@@ -315,6 +361,15 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  .assets .inputs table th {
+    font-size: 1.25em;
+  }
+  .assets .inputs table td {
+    padding: 0.5em;
+  }
+  .assets .inputs table td input {
+    width: 80px;
+  }
   .demoImages {
     margin: 1em;
     -ms-grid-column: 1;
@@ -353,9 +408,18 @@ body {
   .assets .buttons button {
     margin: 0.5em;
   }
-  .assets .inputs input {
-    width: 40px;
+  .assets .inputs table td input {
+    width: 55px;
+  }
+  .demoImages {
+    margin: 1em;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 12;
+    grid-column: 1/13;
+  }
+  .demoImages div img {
     margin: 0;
+    width: 80%;
   }
   .calculations {
     font-size: 0.7em;
