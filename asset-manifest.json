@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/asset-allocation-tracker/static/css/main.65998552.chunk.css",
-    "main.js": "/asset-allocation-tracker/static/js/main.79fa1da4.chunk.js",
-    "main.js.map": "/asset-allocation-tracker/static/js/main.79fa1da4.chunk.js.map",
+    "main.css": "/asset-allocation-tracker/static/css/main.5e936478.chunk.css",
+    "main.js": "/asset-allocation-tracker/static/js/main.674654f1.chunk.js",
+    "main.js.map": "/asset-allocation-tracker/static/js/main.674654f1.chunk.js.map",
     "runtime-main.js": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js",
     "runtime-main.js.map": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js.map",
-    "static/js/2.b60bac75.chunk.js": "/asset-allocation-tracker/static/js/2.b60bac75.chunk.js",
-    "static/js/2.b60bac75.chunk.js.map": "/asset-allocation-tracker/static/js/2.b60bac75.chunk.js.map",
+    "static/js/2.34e24bef.chunk.js": "/asset-allocation-tracker/static/js/2.34e24bef.chunk.js",
+    "static/js/2.34e24bef.chunk.js.map": "/asset-allocation-tracker/static/js/2.34e24bef.chunk.js.map",
     "index.html": "/asset-allocation-tracker/index.html",
-    "precache-manifest.986ffb519a3156875e563ee00d71eb5f.js": "/asset-allocation-tracker/precache-manifest.986ffb519a3156875e563ee00d71eb5f.js",
+    "precache-manifest.3f2d4cdcad8271d02a7a6740752b0dd2.js": "/asset-allocation-tracker/precache-manifest.3f2d4cdcad8271d02a7a6740752b0dd2.js",
     "service-worker.js": "/asset-allocation-tracker/service-worker.js",
-    "static/css/main.65998552.chunk.css.map": "/asset-allocation-tracker/static/css/main.65998552.chunk.css.map",
-    "static/js/2.b60bac75.chunk.js.LICENSE.txt": "/asset-allocation-tracker/static/js/2.b60bac75.chunk.js.LICENSE.txt",
+    "static/css/main.5e936478.chunk.css.map": "/asset-allocation-tracker/static/css/main.5e936478.chunk.css.map",
+    "static/js/2.34e24bef.chunk.js.LICENSE.txt": "/asset-allocation-tracker/static/js/2.34e24bef.chunk.js.LICENSE.txt",
     "static/media/currentAllocationDemo.png": "/asset-allocation-tracker/static/media/currentAllocationDemo.cebaf131.png",
     "static/media/newAllocationDemo.png": "/asset-allocation-tracker/static/media/newAllocationDemo.b142bd2b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e58e0f0b.js",
-    "static/js/2.b60bac75.chunk.js",
-    "static/css/main.65998552.chunk.css",
-    "static/js/main.79fa1da4.chunk.js"
+    "static/js/2.34e24bef.chunk.js",
+    "static/css/main.5e936478.chunk.css",
+    "static/js/main.674654f1.chunk.js"
   ]
 }
