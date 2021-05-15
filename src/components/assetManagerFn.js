@@ -68,8 +68,6 @@ const AssetManagerFn = () => {
     console.log(`input ${id} deleted`);
   };
 
-  const inputChangeHandler = () => {};
-
   return (
     <div className="assets">
       <h1>Portfolio Allocation Tool</h1>
@@ -81,7 +79,6 @@ const AssetManagerFn = () => {
         reallocateMode={reallocateMode}
       />
       <Inputs
-        changeHandler={inputChangeHandler}
         deleteInput={deleteInput}
         inputs={inputs}
         reallocateMode={reallocateMode}

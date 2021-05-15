@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Inputs = ({ changeHandler, deleteInput, inputs, reallocateMode }) => {
+const Inputs = ({ deleteInput, inputs, reallocateMode }) => {
   React.useEffect(() => {
     toggleReallocate();
   }, [reallocateMode, inputs]);
@@ -38,8 +38,7 @@ const Inputs = ({ changeHandler, deleteInput, inputs, reallocateMode }) => {
                     type="text"
                     required
                     placeholder="APPL"
-                    value={input.ticker}
-                    onChange={changeHandler}
+                    defaultValue={input.ticker}
                   ></input>
                 </td>
                 <td>
@@ -48,8 +47,7 @@ const Inputs = ({ changeHandler, deleteInput, inputs, reallocateMode }) => {
                     type="number"
                     required
                     placeholder="30"
-                    value={input.shares}
-                    onChange={changeHandler}
+                    defaultValue={input.shares}
                   ></input>
                 </td>
                 <td>
@@ -58,8 +56,7 @@ const Inputs = ({ changeHandler, deleteInput, inputs, reallocateMode }) => {
                     type="text"
                     required
                     placeholder="150"
-                    value={input.price}
-                    onChange={changeHandler}
+                    defaultValue={input.price}
                   ></input>
                 </td>
                 <td>
@@ -69,8 +66,7 @@ const Inputs = ({ changeHandler, deleteInput, inputs, reallocateMode }) => {
                     type="number"
                     required
                     placeholder="10"
-                    value={input.targetPercentage}
-                    onChange={changeHandler}
+                    defaultValue={input.targetPercentage}
                   ></input>
                 </td>
                 <td>
