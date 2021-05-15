@@ -68,6 +68,43 @@ const AssetManagerFn = () => {
     console.log(`input ${id} deleted`);
   };
 
+  const collectInputs = () => {
+    var assets = document.querySelectorAll(".input");
+    var calcs = [];
+    var targetPercentageTotal = 0;
+    for (var i = 0; i < assets.length; i++) {
+      var loops;
+      var arr = [];
+      var elem = assets[i].getElementsByTagName("input");
+      if (this.state.reallocate === "true") {
+        loops = 4;
+        targetPercentageTotal += parseInt(elem[3].value);
+      } else {
+        loops = 3;
+      }
+      if (targetPercentageTotal > 100) {
+        document.getElementById("error").innerHTML =
+          "Sum of Target Percentages must not exceed 100%";
+        return false;
+      }
+      for (var j = 0; j < loops; j++) {
+        var item = elem[j].value;
+        if (typeof item === "number") {
+          arr.push(Math.round(((item * 100 + Number.EPSILON) * 100) / 100));
+        } else {
+          arr.push(item);
+        }
+      }
+      calcs.push(arr);
+    }
+
+    calcs.sort();
+    this.setState({ calculations: calcs });
+    localStorage.setItem("calculations", JSON.stringify(calcs));
+    console.log(calcs);
+    console.log("submitted");
+  };
+
   return (
     <div className="assets">
       <h1>Portfolio Allocation Tool</h1>
@@ -79,6 +116,7 @@ const AssetManagerFn = () => {
         reallocateMode={reallocateMode}
       />
       <Inputs
+        collectInputs={collectInputs}
         deleteInput={deleteInput}
         inputs={inputs}
         reallocateMode={reallocateMode}
