@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ButtonBar = ({addAsset, clearHandler, reallocateHandler, reallocateMode}) => {
+const ButtonBar = ({addAsset, testValues, clearHandler, reallocateHandler, reallocateMode}) => {
 
     return (
         <div className="buttons">
@@ -16,6 +16,9 @@ const ButtonBar = ({addAsset, clearHandler, reallocateHandler, reallocateMode}) 
               onClick={clearHandler}
             >
               Clear
+            </button>
+            <button onClick={testValues}>
+              Use Test Values
             </button>
         </div>
     );

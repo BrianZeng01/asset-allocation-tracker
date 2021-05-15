@@ -24,10 +24,6 @@ class Inputs extends Component {
     }
   };
 
-  deleteInput = (id) => {
-    document.querySelector(`input${id}`);
-  }
-
   componentDidMount() {
     this.toggleReallocate();
   }
@@ -83,9 +79,6 @@ class Inputs extends Component {
                       required
                       placeholder="10"
                     ></input>
-                  </td>
-                  <td>
-                    <button onClick={this.deleteInput(index)}>X</button>
                   </td>
                 </tr>
               ))}
