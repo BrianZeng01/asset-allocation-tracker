@@ -57,10 +57,6 @@ class AssetManager extends Component {
     // ];
   }
 
-  sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
   addAsset = () => {
     localStorage.setItem(
       "counter",
@@ -120,7 +116,7 @@ class AssetManager extends Component {
     return (
       <>
         <div className="assets">
-          <h1>Portfolio Allocation Tool</h1>
+            <h1>Portfolio Allocation Tool</h1>
           <div className="buttons">
             <button onClick={this.addAsset}>Add Asset</button>
             <button onClick={this.removeAsset}>Remove Last Asset</button>

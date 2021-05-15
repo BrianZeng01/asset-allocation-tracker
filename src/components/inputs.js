@@ -24,6 +24,10 @@ class Inputs extends Component {
     }
   };
 
+  deleteInput = (id) => {
+    document.querySelector(`input${id}`);
+  }
+
   componentDidMount() {
     this.toggleReallocate();
   }
@@ -46,7 +50,7 @@ class Inputs extends Component {
                 ) : null}
               </tr>
               {this.array(this.props.counter).map((count, index) => (
-                <tr className="input" key={index}>
+                <tr className={`input${index}`}  key={index}>
                   <td>
                     <input
                       id={"ticker" + count}
@@ -79,6 +83,9 @@ class Inputs extends Component {
                       required
                       placeholder="10"
                     ></input>
+                  </td>
+                  <td>
+                    <button onClick={this.deleteInput(index)}>X</button>
                   </td>
                 </tr>
               ))}
