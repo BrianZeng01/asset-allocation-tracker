@@ -20,15 +20,21 @@ const AssetManagerFn = () => {
     JSON.parse(localStorage.getItem("inputs")) || []
   );
 
+
   // Each item in the calculations array will be an map containing
   // {ticker, value, shares, change, targetPercentage}
+  const [calculations, setCalculations] = useState(
+    JSON.parse(localStorage.getItem("calculations")) || []
+  );
 
   // Anytime something changes we save everything to local storage
   // All the localstorage setting done here
   React.useEffect(() => {
     localStorage.setItem("reallocateMode", reallocateMode);
     localStorage.setItem("inputs", JSON.stringify(inputs));
-  }, [inputs, reallocateMode]);
+    localStorage.setItem("calculations", JSON.stringify(calculations));
+    localStorage.setItem("displayCalculations", displayCalculations);
+  }, [inputs, reallocateMode, displayCalculations, calculations]);
 
   const reallocateHandler = () => {
     setReallocateMode(reallocateMode === "true" ? "false" : "true");
@@ -105,9 +111,15 @@ const AssetManagerFn = () => {
         "Sum of Target Percentages must not exceed 100%";
       return;
     }
+    calculate();
     setDisplayCalculations("true");
     console.log("Inputs saved");
   };
+
+  const calculate = () => {
+    setCalculations(inputs);
+  }
+
 
   return (
     <>
@@ -122,14 +134,15 @@ const AssetManagerFn = () => {
         />
         <Inputs
           collectInputs={collectInputs}
-          deleteInput={deleteInput}
+          deleteInput={deleteInput
+          }
           inputs={inputs}
           reallocateMode={reallocateMode}
         />
       </div>
       {displayCalculations === "true" ? (
         <Calculations
-          inputs={inputs}
+          inputs={calculations}
           reallocateMode={reallocateMode}
         />
       ) : (
