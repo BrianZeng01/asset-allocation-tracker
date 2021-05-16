@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
+  const deleteStyle = {margin: 0, cursor: "pointer"};
+
   React.useEffect(() => {
     toggleReallocate();
   }, [reallocateMode, inputs]);
@@ -83,7 +85,8 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
                     ></input>
                   </td>
                   <td>
-                    <button onClick={() => deleteInput(input.id)}>X</button>
+                    <button onClick={() => deleteInput(input.id)}
+                    style={deleteStyle}>X</button>
                   </td>
                 </tr>
               ))}

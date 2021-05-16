@@ -20,7 +20,6 @@ const AssetManagerFn = () => {
     JSON.parse(localStorage.getItem("inputs")) || []
   );
 
-
   // Each item in the calculations array will be an map containing
   // {ticker, value, shares, change, targetPercentage}
   const [calculations, setCalculations] = useState(
@@ -43,6 +42,8 @@ const AssetManagerFn = () => {
 
   const clearHandler = () => {
     setInputs([]);
+    setCalculations([]);
+    setDisplayCalculations("false");
     console.log("Assets Cleared");
   };
 
@@ -87,7 +88,6 @@ const AssetManagerFn = () => {
     let assets = document.querySelectorAll(".input");
     let temp = [];
     let targetPercentageTotal = 0;
-    console.log(assets);
     assets.forEach((asset, index) => {
       let inputList = asset.querySelectorAll("input");
       let id = index;
@@ -103,12 +103,14 @@ const AssetManagerFn = () => {
         targetPercentage: targetPercentage,
       });
       targetPercentageTotal += targetPercentage;
-      console.log(inputList);
     });
     setInputs(temp);
     if (reallocateMode === "true" && targetPercentageTotal > 100) {
-      document.querySelector("#error").innerText =
-        "Sum of Target Percentages must not exceed 100%";
+      document.querySelector("#error").innerHTML =
+        '<h2 class="errormsg">Sum of Target Percentages must not exceed 100%</h2>';
+      setTimeout(() => {
+        document.querySelector(".errormsg").remove();
+      }, 3000);
       return;
     }
     calculate();
@@ -118,8 +120,7 @@ const AssetManagerFn = () => {
 
   const calculate = () => {
     setCalculations(inputs);
-  }
-
+  };
 
   return (
     <>
@@ -134,17 +135,13 @@ const AssetManagerFn = () => {
         />
         <Inputs
           collectInputs={collectInputs}
-          deleteInput={deleteInput
-          }
+          deleteInput={deleteInput}
           inputs={inputs}
           reallocateMode={reallocateMode}
         />
       </div>
       {displayCalculations === "true" ? (
-        <Calculations
-          inputs={calculations}
-          reallocateMode={reallocateMode}
-        />
+        <Calculations inputs={calculations} reallocateMode={reallocateMode} />
       ) : (
         <div className="demoImages">
           <h2>Demo View</h2>

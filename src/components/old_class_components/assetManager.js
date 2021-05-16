@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Inputs from "./inputs.js";
 import Calculations from "./calculations.js";
-import currentAllocationDemo from "../images/currentAllocationDemo.png";
-import newAllocationDemo from "../images/newAllocationDemo.png";
+import currentAllocationDemo from "../../images/currentAllocationDemo.png";
+import newAllocationDemo from "../../images/newAllocationDemo.png";
 
 class AssetManager extends Component {
   constructor() {

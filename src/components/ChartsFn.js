@@ -28,7 +28,7 @@ const Charts = ({assets, type}) => {
       dataArray.push({
         title: asset.ticker,
         value: asset.value,
-        color: selectColor(index, 20),
+        color: selectColor(index*2, 20),
       });
     });
 
@@ -48,15 +48,15 @@ const Charts = ({assets, type}) => {
           </div>
 
           <div className="chartColors">
-            {assets.map((asset, index) => (
+            {dataArray.map((data, index) => (
               <div className="color" key={index}>
                 <div
                   className="square"
                   style={{
-                    backgroundColor: asset.color
+                    backgroundColor: data.color
                   }}
                 ></div>
-                {asset.ticker}
+                {data.title}
               </div>
             ))}
           </div>
@@ -72,7 +72,7 @@ const Charts = ({assets, type}) => {
     if (sortBy === "numerically") {
       assets.sort((a, b) => b.value - a.value);
     } else {
-      assets.sort();
+      assets.sort((a, b) => a.ticker.localeCompare(b.ticker));
     }
 
     assets.forEach((asset) => {
