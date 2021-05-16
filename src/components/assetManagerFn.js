@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import ButtonBar from "./ButtonBarFn.js";
 import Inputs from "./InputsFn.js";
 import Calculations from "./CalculationsFn.js";
+import currentAllocationDemo from "../images/currentAllocationDemo.png";
+import newAllocationDemo from "../images/newAllocationDemo.png";
 
 const AssetManagerFn = () => {
   const [reallocateMode, setReallocateMode] = useState(
     localStorage.getItem("reallocateMode") || "true"
   );
 
+  const [displayCalculations, setDisplayCalculations] = useState(
+    localStorage.getItem("displayCalculations") || "false"
+  );
+
+  // Each item in the inputs array will be an map containing
+  // {id, ticker, shares, price, target percentage}
   const [inputs, setInputs] = useState(
     JSON.parse(localStorage.getItem("inputs")) || []
   );
-  // Each item in the inputs array will be an map containing
-  // {id, ticker, shares, price, target percentage}
+
+  // Each item in the calculations array will be an map containing
+  // {ticker, value, shares, change, targetPercentage}
 
   // Anytime something changes we save everything to local storage
   // All the localstorage setting done here
@@ -69,60 +78,70 @@ const AssetManagerFn = () => {
   };
 
   const collectInputs = () => {
-    var assets = document.querySelectorAll(".input");
-    var calcs = [];
-    var targetPercentageTotal = 0;
-    for (var i = 0; i < assets.length; i++) {
-      var loops;
-      var arr = [];
-      var elem = assets[i].getElementsByTagName("input");
-      if (this.state.reallocate === "true") {
-        loops = 4;
-        targetPercentageTotal += parseInt(elem[3].value);
-      } else {
-        loops = 3;
-      }
-      if (targetPercentageTotal > 100) {
-        document.getElementById("error").innerHTML =
-          "Sum of Target Percentages must not exceed 100%";
-        return false;
-      }
-      for (var j = 0; j < loops; j++) {
-        var item = elem[j].value;
-        if (typeof item === "number") {
-          arr.push(Math.round(((item * 100 + Number.EPSILON) * 100) / 100));
-        } else {
-          arr.push(item);
-        }
-      }
-      calcs.push(arr);
+    let assets = document.querySelectorAll(".input");
+    let temp = [];
+    let targetPercentageTotal = 0;
+    console.log(assets);
+    assets.forEach((asset, index) => {
+      let inputList = asset.querySelectorAll("input");
+      let id = index;
+      let ticker = inputList[0].value;
+      let shares = inputList[1].value;
+      let price = inputList[2].value;
+      let targetPercentage = parseInt(inputList[3].value);
+      temp.push({
+        id: id,
+        ticker: ticker,
+        shares: shares,
+        price: price,
+        targetPercentage: targetPercentage,
+      });
+      targetPercentageTotal += targetPercentage;
+      console.log(inputList);
+    });
+    setInputs(temp);
+    if (reallocateMode === "true" && targetPercentageTotal > 100) {
+      document.querySelector("#error").innerText =
+        "Sum of Target Percentages must not exceed 100%";
+      return;
     }
-
-    calcs.sort();
-    this.setState({ calculations: calcs });
-    localStorage.setItem("calculations", JSON.stringify(calcs));
-    console.log(calcs);
-    console.log("submitted");
+    setDisplayCalculations("true");
+    console.log("Inputs saved");
   };
 
   return (
-    <div className="assets">
-      <h1>Portfolio Allocation Tool</h1>
-      <ButtonBar
-        addAsset={addAsset}
-        testValues={testValues}
-        clearHandler={clearHandler}
-        reallocateHandler={reallocateHandler}
-        reallocateMode={reallocateMode}
-      />
-      <Inputs
-        collectInputs={collectInputs}
-        deleteInput={deleteInput}
-        inputs={inputs}
-        reallocateMode={reallocateMode}
-      />
-      <Calculations />
-    </div>
+    <>
+      <div className="assets">
+        <h1>Portfolio Allocation Tool</h1>
+        <ButtonBar
+          addAsset={addAsset}
+          testValues={testValues}
+          clearHandler={clearHandler}
+          reallocateHandler={reallocateHandler}
+          reallocateMode={reallocateMode}
+        />
+        <Inputs
+          collectInputs={collectInputs}
+          deleteInput={deleteInput}
+          inputs={inputs}
+          reallocateMode={reallocateMode}
+        />
+      </div>
+      {displayCalculations === "true" ? (
+        <Calculations
+          inputs={inputs}
+          reallocateMode={reallocateMode}
+        />
+      ) : (
+        <div className="demoImages">
+          <h2>Demo View</h2>
+          <div>
+            <img alt="demoImage" src={currentAllocationDemo}></img>
+            <img alt="demoImage" src={newAllocationDemo}></img>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

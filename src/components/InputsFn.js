@@ -19,10 +19,17 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
       }
     }
   };
+
   return (
-    <div className="inputs">
+    <form
+      action="#"
+      onSubmit={(e) => {
+        e.preventDefault();
+        collectInputs();
+      }}
+    >
       {inputs.length > 0 ? (
-        <form action="#" onSubmit={collectInputs}>
+        <div className="inputs">
           <table>
             <tbody>
               <tr>
@@ -54,7 +61,7 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
                   <td>
                     <input
                       id={"price" + input.id}
-                      type="text"
+                      type="number"
                       required
                       placeholder="150"
                       defaultValue={input.price}
@@ -63,7 +70,11 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
                   <td>
                     <input
                       className="toggle"
-                      style={reallocateMode === "true" ? {display:"inline"} : {display:"none"}}
+                      style={
+                        reallocateMode === "true"
+                          ? { display: "inline" }
+                          : { display: "none" }
+                      }
                       id={"target" + input.id}
                       type="number"
                       required
@@ -86,9 +97,9 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
             Calculate
           </button>
           <div id="error"></div>
-        </form>
+        </div>
       ) : null}
-    </div>
+    </form>
   );
 };
 
