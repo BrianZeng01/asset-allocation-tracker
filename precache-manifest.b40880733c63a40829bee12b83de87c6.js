@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "29062bfe320914772fc0e2c0a1d3fea6",
+    "revision": "faeda285e85a7bdda111ff8f257c4158",
     "url": "/asset-allocation-tracker/index.html"
   },
   {
-    "revision": "fe5f48053806eb091575",
+    "revision": "f52e16e4a8d199adc890",
     "url": "/asset-allocation-tracker/static/css/main.5e936478.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/asset-allocation-tracker/static/js/2.2b7d3f4e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fe5f48053806eb091575",
-    "url": "/asset-allocation-tracker/static/js/main.04f36180.chunk.js"
+    "revision": "f52e16e4a8d199adc890",
+    "url": "/asset-allocation-tracker/static/js/main.193ec79b.chunk.js"
   },
   {
     "revision": "944dd2ff08e618f3007f",
