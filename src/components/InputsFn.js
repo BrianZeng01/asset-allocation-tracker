@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
   const deleteStyle = {margin: 0, cursor: "pointer"};
@@ -63,7 +63,7 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
                   <td>
                     <input
                       id={"price" + input.id}
-                      type="number"
+                      type="text"
                       required
                       placeholder="150"
                       defaultValue={input.price}

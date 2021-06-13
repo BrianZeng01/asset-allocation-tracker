@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { Bar } from "react-chartjs-2";
 
