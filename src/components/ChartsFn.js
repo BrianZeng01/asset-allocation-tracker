@@ -132,6 +132,7 @@ const Charts = ({assets, type}) => {
               <th>Ticker</th>
               <th>Value</th>
               <th>Shares</th>
+              <th>Price</th>
               <th>Percentage</th>
               {type === "reallocated" ? <th>Buy/Sell</th> : null}
             </tr>
@@ -140,6 +141,7 @@ const Charts = ({assets, type}) => {
                 <td>{asset.ticker}</td>
                 <td>{asset.value}</td>
                 <td>{asset.shares}</td>
+                <td>{asset.price}</td>
                 <td>{asset.percentage}</td>
                 {type === "reallocated" ? <td>{asset.change}</td> : null}
               </tr>

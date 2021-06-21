@@ -94,7 +94,9 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
           </table>
           <h4>
             Note: Sum of Target Percentage under 100 will allocate remaining
-            percentage to cash
+            percentage to cash <br>
+            </br>
+            If cash included in assets name Ticker = "CASH", Price = 1, and Shares = amount
           </h4>
           <button type="submit" className="calculate">
             Calculate

@@ -95,8 +95,6 @@ const AssetManagerFn = () => {
       let shares = inputList[1].value;
       let price = parseFloat(inputList[2].value).toFixed(2);
       let targetPercentage = parseFloat(inputList[3].value).toFixed(2);
-      console.log(price)
-      console.log(targetPercentage)
       temp.push({
         id: id,
         ticker: ticker,
@@ -115,12 +113,11 @@ const AssetManagerFn = () => {
       }, 3000);
       return;
     }
-    calculate();
+    calculate(temp);
     setDisplayCalculations("true");
-    console.log("Inputs saved");
   };
 
-  const calculate = () => {
+  const calculate = (inputs) => {
     setCalculations(inputs);
   };
 

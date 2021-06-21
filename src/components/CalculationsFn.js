@@ -28,7 +28,7 @@ const Calculations = ({ inputs, reallocateMode }) => {
 
     inputs.forEach((input) => {
       let value = parseFloat((input.shares * input.price).toFixed(2));
-      temp.push({ ticker: input.ticker, value: value, shares: input.shares });
+      temp.push({ ticker: input.ticker, value: value, shares: input.shares , price: input.price});
       total += value;
     });
     temp.forEach((asset) => {
@@ -44,9 +44,10 @@ const Calculations = ({ inputs, reallocateMode }) => {
   const calculateNew = () => {
     let newTotalValue = 0;
     let reallocatedAssets = [];
+    let cashInCurrent = false;
+    let cashObj;
 
     inputs.forEach((input) => {
-      let ticker = input.ticker;
       let newShares = Math.floor(
         ((input.targetPercentage / 100) * totalValue) / input.price
       );
@@ -57,26 +58,41 @@ const Calculations = ({ inputs, reallocateMode }) => {
         100;
 
       newTotalValue += newValue;
-      reallocatedAssets.push({
-        ticker: ticker,
+      let obj = {
+        ticker: input.ticker,
         value: newValue,
         shares: newShares,
+        price: input.price,
         percentage: percentage,
         change: buySell,
-      });
+      };
+      reallocatedAssets.push(obj);
+      if(input.ticker.toLowerCase() == "cash") {
+        cashInCurrent = true;
+        obj.change = 0;
+        cashObj = obj;
+      }
     });
     let cash =
       Math.round((totalValue - newTotalValue) * 100 + Number.EPSILON) / 100;
     let percentage = 
         Math.round(((cash / totalValue) * 100 + Number.EPSILON) * 100) /
         100;
-    reallocatedAssets.push({
-      ticker: "CASH",
-      value: cash,
-      shares: cash,
-      percentage,
-      change: 0,
+    if(cashInCurrent) {
+      cashObj.value = cashObj.value + cash;
+      cashObj.value = cashObj.shares + cash;
+      cashObj.percentage = cashObj.percentage + percentage;
+    } else {
+      reallocatedAssets.push({
+        ticker: "CASH",
+        value: cash,
+        shares: cash,
+        price: 1,
+        percentage,
+        change: 0,
     });
+    }
+    
 
     setReallocatedAssets(reallocatedAssets); 
     console.log("new allocation calculated");
