@@ -206,7 +206,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse;
-  font-size: 1.25em;
+  font-size: 1.15em;
 }
 
 .calculations .table table tbody {
@@ -223,7 +223,7 @@ body {
 .calculations .table table tbody td {
   padding: 0.4em;
   border-style: hidden;
-  padding-right: 1.5em;
+  padding-right: 1em;
 }
 
 .calculations .table table tbody tr:hover {
