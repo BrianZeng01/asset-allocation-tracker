@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/asset-allocation-tracker/static/css/main.5e936478.chunk.css",
-    "main.js": "/asset-allocation-tracker/static/js/main.e9c3cda1.chunk.js",
-    "main.js.map": "/asset-allocation-tracker/static/js/main.e9c3cda1.chunk.js.map",
+    "main.js": "/asset-allocation-tracker/static/js/main.47c13926.chunk.js",
+    "main.js.map": "/asset-allocation-tracker/static/js/main.47c13926.chunk.js.map",
     "runtime-main.js": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js",
     "runtime-main.js.map": "/asset-allocation-tracker/static/js/runtime-main.e58e0f0b.js.map",
     "static/js/2.2b7d3f4e.chunk.js": "/asset-allocation-tracker/static/js/2.2b7d3f4e.chunk.js",
     "static/js/2.2b7d3f4e.chunk.js.map": "/asset-allocation-tracker/static/js/2.2b7d3f4e.chunk.js.map",
     "index.html": "/asset-allocation-tracker/index.html",
-    "precache-manifest.caf2cf82c8aed81c1b1186caa222cb7d.js": "/asset-allocation-tracker/precache-manifest.caf2cf82c8aed81c1b1186caa222cb7d.js",
+    "precache-manifest.99e33d90d906bf8193346d86f5536d3a.js": "/asset-allocation-tracker/precache-manifest.99e33d90d906bf8193346d86f5536d3a.js",
     "service-worker.js": "/asset-allocation-tracker/service-worker.js",
     "static/css/main.5e936478.chunk.css.map": "/asset-allocation-tracker/static/css/main.5e936478.chunk.css.map",
     "static/js/2.2b7d3f4e.chunk.js.LICENSE.txt": "/asset-allocation-tracker/static/js/2.2b7d3f4e.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.e58e0f0b.js",
     "static/js/2.2b7d3f4e.chunk.js",
     "static/css/main.5e936478.chunk.css",
-    "static/js/main.e9c3cda1.chunk.js"
+    "static/js/main.47c13926.chunk.js"
   ]
 }
