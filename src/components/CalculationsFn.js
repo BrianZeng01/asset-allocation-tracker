@@ -80,7 +80,7 @@ const Calculations = ({ inputs, reallocateMode }) => {
         100;
     if(cashInCurrent) {
       cashObj.value = cashObj.value + cash;
-      cashObj.value = cashObj.shares + cash;
+      cashObj.shares = cashObj.shares + cash;
       cashObj.percentage = cashObj.percentage + percentage;
     } else {
       reallocatedAssets.push({
