@@ -93,8 +93,10 @@ const AssetManagerFn = () => {
       let id = index;
       let ticker = inputList[0].value;
       let shares = inputList[1].value;
-      let price = parseInt(inputList[2].value);
-      let targetPercentage = parseInt(inputList[3].value);
+      let price = parseFloat(inputList[2].value).toFixed(2);
+      let targetPercentage = parseFloat(inputList[3].value).toFixed(2);
+      console.log(price)
+      console.log(targetPercentage)
       temp.push({
         id: id,
         ticker: ticker,

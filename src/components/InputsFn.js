@@ -78,7 +78,7 @@ const Inputs = ({ collectInputs, deleteInput, inputs, reallocateMode }) => {
                           : { display: "none" }
                       }
                       id={"target" + input.id}
-                      type="number"
+                      type="text"
                       required
                       placeholder="10"
                       defaultValue={input.targetPercentage}

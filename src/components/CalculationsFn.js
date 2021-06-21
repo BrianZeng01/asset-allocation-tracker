@@ -27,7 +27,7 @@ const Calculations = ({ inputs, reallocateMode }) => {
     let temp = [];
 
     inputs.forEach((input) => {
-      let value = parseInt((input.shares * input.price).toFixed(2));
+      let value = parseFloat((input.shares * input.price).toFixed(2));
       temp.push({ ticker: input.ticker, value: value, shares: input.shares });
       total += value;
     });
@@ -51,7 +51,7 @@ const Calculations = ({ inputs, reallocateMode }) => {
         ((input.targetPercentage / 100) * totalValue) / input.price
       );
       let buySell = newShares - input.shares;
-      let newValue = parseInt((newShares * input.price).toFixed(2));
+      let newValue = parseFloat((newShares * input.price).toFixed(2));
       let percentage =
         Math.round(((newValue / totalValue) * 100 + Number.EPSILON) * 100) /
         100;

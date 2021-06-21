@@ -85,7 +85,7 @@ class AssetManager extends Component {
       var elem = assets[i].getElementsByTagName("input");
       if (this.state.reallocate === "true") {
         loops = 4;
-        targetPercentageTotal += parseInt(elem[3].value);
+        targetPercentageTotal += parseFloat(elem[3].value).toFixed(2);
       } else {
         loops = 3;
       }
